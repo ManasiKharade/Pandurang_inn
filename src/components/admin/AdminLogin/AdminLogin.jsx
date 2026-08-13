@@ -44,15 +44,15 @@ function AdminLogin() {
   };
 
   return (
-    <div className="admin-login-page">
-      <form className="admin-login-card" onSubmit={handleSubmit}>
-        <div className="admin-login-header">
-          <span className="admin-login-eyebrow">Pandurang Inn</span>
+    <div className="component-admin-login-page">
+      <form className="component-admin-login-card" onSubmit={handleSubmit}>
+        <div className="component-admin-login-header">
+          <span className="component-admin-login-eyebrow">Pandurang Inn</span>
           <h2>Admin Login</h2>
           <p>Sign in to manage contact enquiries.</p>
         </div>
 
-        <div className="admin-form-group">
+        <div className="component-admin-form-group">
           <label>Email</label>
           <input
             type="email"
@@ -63,7 +63,7 @@ function AdminLogin() {
           />
         </div>
 
-        <div className="admin-form-group">
+        <div className="component-admin-form-group">
           <label>Password</label>
           <input
             type="password"
@@ -74,9 +74,9 @@ function AdminLogin() {
           />
         </div>
 
-        {error && <span className="admin-login-error">{error}</span>}
+        {error && <span className="component-admin-login-error">{error}</span>}
 
-        <button type="submit" className="admin-login-btn" disabled={isSubmitting}>
+        <button type="submit" className="component-admin-login-btn" disabled={isSubmitting}>
           {isSubmitting ? "Signing in..." : "Sign In"}
         </button>
       </form>

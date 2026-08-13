@@ -1,4 +1,6 @@
-.admin-login-page {
+/* Namespaced component admin login styles to avoid conflicts with page-level admin styles */
+
+.component-admin-login-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -8,21 +10,21 @@
   font-family: var(--body-font);
 }
 
-.admin-login-card {
+.component-admin-login-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   background: var(--white);
   border-radius: var(--radius-md);
   padding: 44px 36px;
   box-shadow: var(--shadow-lg);
 }
 
-.admin-login-header {
+.component-admin-login-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
-.admin-login-eyebrow {
+.component-admin-login-eyebrow {
   display: inline-block;
   font-size: 13px;
   letter-spacing: 2px;
@@ -32,32 +34,35 @@
   margin-bottom: 10px;
 }
 
-.admin-login-header h2 {
+.component-admin-login-header h2 {
   font-family: var(--heading-font);
-  font-size: var(--fs-h3);
+  font-size: 22px;
   color: var(--secondary-color);
   margin-bottom: 8px;
 }
 
-.admin-login-header p {
+.component-admin-login-header p {
   font-size: 14px;
   color: var(--gray);
 }
 
-.admin-form-group {
-  margin-bottom: 20px;
+.component-admin-form-group {
+  margin-bottom: 18px;
   display: flex;
   flex-direction: column;
 }
 
-.admin-form-group label {
+.component-admin-form-group label {
+  display: block;
   font-size: 13px;
   font-weight: var(--fw-medium);
   color: var(--dark-gray);
   margin-bottom: 8px;
 }
 
-.admin-form-group input {
+.component-admin-form-group input {
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -67,11 +72,11 @@
   transition: var(--transition);
 }
 
-.admin-form-group input:focus {
+.component-admin-form-group input:focus {
   border-color: var(--primary-color);
 }
 
-.admin-login-error {
+.component-admin-login-error {
   display: block;
   color: #c0392b;
   font-size: 13px;
@@ -79,7 +84,7 @@
   margin-top: -8px;
 }
 
-.admin-login-btn {
+.component-admin-login-btn {
   width: 100%;
   padding: 13px;
   border: none;
@@ -92,11 +97,11 @@
   transition: var(--transition);
 }
 
-.admin-login-btn:hover:not(:disabled) {
+.component-admin-login-btn:hover:not(:disabled) {
   opacity: 0.92;
 }
 
-.admin-login-btn:disabled {
+.component-admin-login-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

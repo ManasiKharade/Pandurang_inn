@@ -76,39 +76,39 @@ export function AuthProvider({ children }) {
       );
     }
 
-    // 1. Try standard Firebase Authentication first (since user is registered in Firebase Auth)
+    // 1. Check Firestore 'admins' collection first for database credentials
+    if (db) {
+      try {
+        const adminsRef = collection(db, "admins");
+        const q = query(adminsRef, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const adminDoc = querySnapshot.docs[0].data();
+          if (adminDoc.password && adminDoc.password === password) {
+            const adminUser = {
+              uid: querySnapshot.docs[0].id,
+              email: adminDoc.email,
+              displayName: adminDoc.name || adminDoc.displayName || "Admin",
+              ...adminDoc,
+            };
+            setCurrentUser(adminUser);
+            localStorage.setItem("hotel_raks_db_user", JSON.stringify(adminUser));
+            return adminUser;
+          }
+        }
+      } catch (dbError) {
+        console.warn("Firestore admin query error:", dbError?.message || dbError);
+      }
+    }
+
+    // 2. If not found in DB or password didn't match, try standard Firebase Authentication
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       setCurrentUser(user);
       return user;
     } catch (authError) {
-      // 2. If Auth fails or isn't used, check Firestore 'admins' collection safely
-      if (db) {
-        try {
-          const adminsRef = collection(db, "admins");
-          const q = query(adminsRef, where("email", "==", email));
-          const querySnapshot = await getDocs(q);
-
-          if (!querySnapshot.empty) {
-            const adminDoc = querySnapshot.docs[0].data();
-            if (adminDoc.password && adminDoc.password === password) {
-              const adminUser = {
-                uid: querySnapshot.docs[0].id,
-                email: adminDoc.email,
-                displayName: adminDoc.name || adminDoc.displayName || "Admin",
-                ...adminDoc,
-              };
-              setCurrentUser(adminUser);
-              localStorage.setItem("hotel_raks_db_user", JSON.stringify(adminUser));
-              return adminUser;
-            }
-          }
-        } catch (dbError) {
-          console.warn("Firestore admin query error:", dbError?.message || dbError);
-        }
-      }
-
       // Format clean error message for user UI
       const readableMessage =
         authError.code === "auth/invalid-credential" ||

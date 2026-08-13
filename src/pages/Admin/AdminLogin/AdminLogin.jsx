@@ -1,128 +1,109 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./AdminLogin.css";
+
 import { useAuth } from "../../../context/AuthContext";
+import logo from "../../../assets/logos/PANDURANG_INN LOGO.png";
 
 function AdminLogin() {
+  const { login, currentUser } = useAuth();
   const navigate = useNavigate();
-  const { login, currentUser, loading } = useAuth();
+  const location = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  // If the admin is already logged in, send them to the dashboard
-  useEffect(() => {
-    if (!loading && currentUser) {
-      navigate("/admin/dashboard", { replace: true });
-    }
-  }, [currentUser, loading, navigate]);
+  const from = location.state?.from?.pathname || "/admin/dashboard";
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  if (currentUser) {
+    navigate("/admin/dashboard", { replace: true });
+  }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setError("");
 
-    const cleanEmail = email.trim();
-
-    if (!cleanEmail || !password) {
-      setError("Please enter your email and password.");
+    if (!email.trim() || !password.trim()) {
+      setError("Please enter both email and password.");
       return;
     }
 
     setIsSubmitting(true);
-
     try {
-      await login(cleanEmail, password);
-
-      toast.success("Login successful");
-
-      // Give the logged-in admin access to the dashboard
-      navigate("/admin/dashboard", { replace: true });
-    } catch (loginError) {
-      console.error("Login failed:", loginError);
-
-      const errorMessage =
-        loginError?.message || "Invalid email or password.";
-
-      setError(errorMessage);
-      toast.error("Login failed");
+      await login(email.trim(), password);
+      toast.success("Welcome back!");
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error("Admin login failed:", err);
+      setError(err?.message?.includes("Firebase isn't connected")
+        ? "Firebase isn't connected yet -- see ADMIN_SETUP.md."
+        : "Invalid email or password.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (loading) {
-    return (
-      <main className="admin-login-page">
-        <div className="admin-login-card">
-          <p className="admin-login-loading">Checking login...</p>
-        </div>
-      </main>
-    );
-  }
-
   return (
-    <main className="admin-login-page">
-      <section className="admin-login-card">
+    <div className="admin-login-page">
+      <form className="admin-login-card" onSubmit={handleSubmit}>
+
         <div className="admin-login-header">
-          <span className="admin-login-eyebrow">Pandurang Inn</span>
-          <h1>Admin Login</h1>
-          <p>Sign in to manage guest enquiries.</p>
+          <img src={logo} alt="Pandurang Inn" className="admin-login-logo" />
+          <span className="admin-login-eyebrow">Admin Access</span>
+          <h2>Welcome Back</h2>
+          <p>Sign in to manage contact enquiries.</p>
         </div>
 
-        <form className="admin-login-form" onSubmit={handleSubmit}>
-          <div className="admin-login-field">
-            <label htmlFor="admin-email">Email Address</label>
+        <div className="admin-form-group">
+          <label>Email</label>
+          <div className="admin-input-wrap">
+            <FaEnvelope className="admin-input-icon" />
             <input
-              id="admin-email"
-              name="email"
               type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
               placeholder="admin@panduranginn.com"
-              autoComplete="email"
-              disabled={isSubmitting}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
             />
           </div>
+        </div>
 
-          <div className="admin-login-field">
-            <label htmlFor="admin-password">Password</label>
+        <div className="admin-form-group">
+          <label>Password</label>
+          <div className="admin-input-wrap">
+            <FaLock className="admin-input-icon" />
             <input
-              id="admin-password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
-              disabled={isSubmitting}
             />
+            <button
+              type="button"
+              className="admin-input-toggle"
+              onClick={() => setShowPassword((prev) => !prev)}
+              tabIndex={-1}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
+        </div>
 
-          {error && (
-            <p className="admin-login-error" role="alert">
-              {error}
-            </p>
-          )}
+        {error && <span className="admin-login-error">{error}</span>}
 
-          <button
-            type="submit"
-            className="admin-login-button"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Signing in..." : "Sign In"}
-          </button>
-        </form>
+        <button type="submit" className="admin-login-btn" disabled={isSubmitting}>
+          {isSubmitting ? <span className="admin-btn-spinner" /> : "Sign In"}
+        </button>
 
-        <p className="admin-login-footer">
-          Authorized administrators only
-        </p>
-      </section>
-    </main>
+      </form>
+    </div>
   );
 }
 
