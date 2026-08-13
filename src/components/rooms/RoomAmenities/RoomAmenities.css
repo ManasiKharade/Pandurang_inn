@@ -1,50 +1,75 @@
 .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px 14px;
   margin: 0 0 10px;
 }
 
 .amenity-item {
   display: flex;
-
   align-items: center;
-
   gap: 15px;
-
   padding: 10px 14px;
-
   background: #faf7f2;
-
   border-radius: 14px;
-
   transition: .35s;
-
   border: 1px solid #ececec;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .amenity-item:hover {
-
   transform: translateY(-4px);
-
   border-color: #b88a44;
-
   box-shadow: 0 12px 25px rgba(0, 0, 0, .08);
 }
 
 .amenity-icon {
-
   width: 34px;
-
   height: 34px;
-
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .amenity-item span:last-child {
-
   color: #444;
-
   font-size: 14px;
-
   font-weight: 500;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 600px) {
+  .amenities-grid {
+    gap: 10px;
+  }
+
+  .amenity-item {
+    padding: 9px 10px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .amenity-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
+  }
+
+  .amenity-item span:last-child {
+    font-size: 12.5px;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 380px) {
+  .amenities-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

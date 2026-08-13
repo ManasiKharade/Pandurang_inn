@@ -38,8 +38,8 @@ const socialLinks = [
   },
 ];
 
-const quickLinks = navigation.slice(0, 5);
-const moreLinks = navigation.slice(5);
+/* All nav items now live in one Quick Links column — no more separate Explore column */
+const quickLinks = navigation;
 
 function Footer() {
   const year = new Date().getFullYear();
@@ -75,26 +75,11 @@ function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links (now includes Contact) */}
           <div className="footer-col">
             <h4 className="footer-col-title">Quick Links</h4>
             <ul className="footer-links">
               {quickLinks.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.path} className="footer-link">
-                    <span className="footer-link-arrow">›</span>
-                    {link.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* More Links */}
-          <div className="footer-col">
-            <h4 className="footer-col-title">Explore</h4>
-            <ul className="footer-links">
-              {moreLinks.map((link) => (
                 <li key={link.id}>
                   <NavLink to={link.path} className="footer-link">
                     <span className="footer-link-arrow">›</span>

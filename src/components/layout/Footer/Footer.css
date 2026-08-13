@@ -20,7 +20,7 @@
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+  grid-template-columns: 1.6fr 1fr 1.4fr;
   gap: 32px;
 }
 
@@ -203,16 +203,83 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
+
+  /* Brand spans full width above Quick Links + Contact on tablet */
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 600px) {
+  .footer-body {
+    padding: 28px 0 16px;
+  }
+
   .footer-container {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 22px;
+  }
+
+  .footer-logo img {
+    width: 64px;
+    margin-bottom: 8px;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+    max-width: 100%;
+  }
+
+  .footer-socials {
+    gap: 8px;
+  }
+
+  .footer-social-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .footer-col-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+  }
+
+  /* Quick Links now holds 6 items — lay them out 2-per-row to stay compact */
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+  }
+
+  .footer-link {
+    font-size: 12px;
+  }
+
+  .footer-contact-list {
+    gap: 6px;
+  }
+
+  .footer-contact-list li {
+    font-size: 12px;
+    line-height: 1.35;
+    gap: 8px;
+  }
+
+  .footer-bottom {
+    padding: 10px 0;
   }
 
   .footer-bottom-inner {
     justify-content: center;
     text-align: center;
+    gap: 4px;
+  }
+
+  .footer-copyright,
+  .footer-legal-link {
+    font-size: 11px;
   }
 }
