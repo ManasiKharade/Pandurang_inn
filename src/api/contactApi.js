@@ -133,7 +133,10 @@ export async function submitEnquiry({ name, email, phone, message, type }) {
     });
     return docRef.id;
   } catch (error) {
-    return saveLocalEnquiry(cleanData);
+    if (error.code === 'permission-denied') {
+      throw new Error("Permission denied. Please update your Firestore Security Rules to allow write access to the 'enquiries' collection.");
+    }
+    throw error;
   }
 }
 
@@ -154,7 +157,10 @@ export async function getEnquiries() {
       ...docSnap.data(),
     }));
   } catch (error) {
-    return getMockEnquiries();
+    if (error.code === 'permission-denied') {
+      throw new Error("Permission denied. Please update your Firestore Security Rules to allow read access to the 'enquiries' collection.");
+    }
+    throw error;
   }
 }
 
