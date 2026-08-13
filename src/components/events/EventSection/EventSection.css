@@ -1,0 +1,57 @@
+.event-section {
+
+    width: 100%;
+
+    padding: 70px 5%;
+
+    background: #faf8f5;
+
+}
+
+.event-heading {
+
+    max-width: 720px;
+
+    margin: 0 auto 50px;
+
+    text-align: center;
+
+}
+
+.event-heading span {
+
+    color: #B88A44;
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+
+}
+
+.event-heading h2 {
+
+    margin-top: 18px;
+
+    font-size: 52px;
+
+    color: #222;
+
+    font-family: "Playfair Display", serif;
+
+}
+
+.event-heading p {
+
+    margin-top: 20px;
+
+    color: #777;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}

@@ -1,0 +1,100 @@
+.rooms-section {
+  padding: 40px 8% 70px;
+  background: #faf8f4;
+}
+
+.rooms-header {
+
+  max-width: 800px;
+
+  margin: auto;
+
+  text-align: center;
+
+  margin-bottom: 70px;
+
+}
+
+.section-tag {
+
+  letter-spacing: 4px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #B88A44;
+
+  margin-bottom: 15px;
+
+  text-transform: uppercase;
+
+}
+
+.rooms-header h2 {
+
+  font-size: 48px;
+
+  color: #222;
+
+  margin-bottom: 20px;
+
+  font-family: "Playfair Display", serif;
+
+}
+
+.section-description {
+
+  font-size: 18px;
+
+  line-height: 32px;
+
+  color: #666;
+
+  max-width: 700px;
+
+  margin: auto;
+
+}
+
+.rooms-heading {
+
+  text-align: center;
+
+  max-width: 700px;
+
+  margin: 0 auto 45px;
+}
+
+.rooms-heading span {
+
+  color: #b88a44;
+
+  letter-spacing: 4px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.rooms-heading h2 {
+
+  margin-top: 15px;
+
+  font-size: 48px;
+
+  font-family: "Playfair Display", serif;
+
+  color: #222;
+}
+
+.rooms-heading p {
+
+  margin-top: 20px;
+
+  color: #777;
+
+  line-height: 1.8;
+
+  font-size: 17px;
+}

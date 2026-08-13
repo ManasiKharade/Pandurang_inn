@@ -1,0 +1,1 @@
+Place room images here.

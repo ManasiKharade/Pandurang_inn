@@ -1,0 +1,101 @@
+:root{
+
+/* ===== Brand Colors ===== */
+
+--primary-color:#b8860b;
+--primary-dark:#8f6908;
+--primary-light:#d8b85f;
+
+--secondary-color:#1f1f1f;
+
+--white:#ffffff;
+
+--off-white:#faf8f4;
+
+--light-gray:#f5f5f5;
+
+--gray:#777777;
+
+--dark-gray:#444444;
+
+--border:#e8e8e8;
+
+
+/* ===== Gradients ===== */
+
+--gold-gradient:
+linear-gradient(
+135deg,
+#b8860b,
+#d4af37
+);
+
+
+/* ===== Typography ===== */
+
+--heading-font: "Times New Roman", Times, serif;
+--body-font: "Times New Roman", Times, serif;
+
+/* ===== Font Sizes ===== */
+
+--fs-hero:72px;
+
+--fs-h1:56px;
+
+--fs-h2:46px;
+
+--fs-h3:30px;
+
+--fs-title:22px;
+
+--fs-body:17px;
+
+--fs-small:15px;
+
+
+/* ===== Font Weight ===== */
+
+--fw-light:300;
+
+--fw-normal:400;
+
+--fw-medium:500;
+
+--fw-semibold:600;
+
+--fw-bold:700;
+
+
+/* ===== Border Radius ===== */
+
+--radius-sm:10px;
+
+--radius-md:18px;
+
+--radius-lg:30px;
+
+--radius-xl:40px;
+
+
+/* ===== Shadows ===== */
+
+--shadow-sm:
+0 8px 18px rgba(0,0,0,.08);
+
+--shadow-md:
+0 15px 40px rgba(0,0,0,.10);
+
+--shadow-lg:
+0 25px 60px rgba(0,0,0,.18);
+
+
+/* ===== Transition ===== */
+
+--transition:.35s ease;
+
+
+/* ===== Max Width ===== */
+
+--container:1280px;
+
+}

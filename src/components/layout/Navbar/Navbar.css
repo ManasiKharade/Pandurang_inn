@@ -1,0 +1,323 @@
+body {
+  margin: 0;
+}
+
+/* ===== Navbar Base (top/hero) ===== */
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 70px;
+  z-index: 100;
+
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  transition: background 0.35s ease, height 0.35s ease, box-shadow 0.35s ease;
+}
+
+.navbar-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+/* ===== Logo ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.logo img {
+  height: 58px;
+  width: auto;
+  display: block;
+}
+
+/* Hotel name text — hidden on desktop, shown only on mobile (see media query below) */
+.logo-text {
+  display: none;
+}
+
+/* ===== Menu ===== */
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+}
+
+.navbar .nav-link {
+  color: #1f1f1f;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.25s ease, background-color 0.25s ease, font-weight 0.25s ease;
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: 4px;
+  width: 0%;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.25s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #D4AF37;
+  font-weight: 600;
+  background: rgba(212, 175, 55, 0.14);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: calc(100% - 24px);
+}
+
+/* ===== CTA ===== */
+.nav-cta {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* IMPORTANT: override Button.css in navbar (no jump/animation) */
+.navbar .btn.btn-primary {
+  padding: 12px 28px;
+  border-radius: 999px;
+
+  background: #D4AF37;
+  border: 1px solid #D4AF37;
+  color: #ffffff;
+
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transform: none !important;
+  box-shadow: none;
+}
+
+.navbar .btn.btn-primary:hover {
+  background: #D4AF37;
+  color: #0b0b0b;
+  transform: none !important;
+}
+
+/* ===== Scrolled State ===== */
+.navbar.scrolled {
+  height: 70px;
+  background: #ffffff;
+  border-bottom: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+}
+
+.navbar.scrolled .logo img {
+  height: 50px;
+}
+
+.navbar.scrolled .nav-link {
+  color: #1f1f1f;
+}
+
+.navbar.scrolled .nav-link:hover,
+.navbar.scrolled .nav-link.active {
+  color: #B8860B;
+}
+
+.navbar.scrolled .nav-link::after {
+  background: #B8860B;
+}
+
+.navbar.scrolled .btn.btn-primary {
+  background: #B8860B;
+  border-color: #B8860B;
+  color: #fff;
+}
+
+.navbar.scrolled .btn.btn-primary:hover {
+  background: #9c722f;
+  border-color: #9c722f;
+  color: #fff;
+}
+
+/* ===== Nav Actions & Toggle ===== */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-nav-cta {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.mobile-nav-cta .btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 102;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2.5px;
+  background: #1f1f1f;
+  border-radius: 4px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-toggle.open .hamburger-line:nth-child(1) {
+  transform: translateY(9.75px) rotate(45deg);
+  background: #B8860B;
+}
+
+.nav-toggle.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open .hamburger-line:nth-child(3) {
+  transform: translateY(-9.75px) rotate(-45deg);
+  background: #B8860B;
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 98;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1000px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .desktop-cta {
+    display: none;
+  }
+
+  .mobile-nav-cta {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 90px 24px 40px;
+    gap: 12px;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+    z-index: 99;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+
+  .navbar .nav-link {
+    font-size: 16px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    width: 100%;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .navbar .nav-link::after {
+    display: none;
+  }
+
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active {
+    background: rgba(184, 134, 11, 0.12);
+  }
+
+  .navbar {
+    height: 70px;
+  }
+
+  /* Navbar container becomes the positioning context for the centered text,
+     and only nav-actions (hamburger) stays in normal flex flow now. */
+  .navbar {
+    position: fixed;
+    /* already true, just confirming — needed as the anchor */
+  }
+
+  .navbar-container {
+    position: relative;
+    /* keep this, harmless either way */
+    justify-content: space-between;
+  }
+
+  .logo-text {
+    display: block;
+    position: fixed;
+    /* changed from absolute */
+    left: 50%;
+    top: 35px;
+    /* half of navbar's 70px height */
+    transform: translate(-50%, -50%);
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1f1f1f;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+    pointer-events: none;
+    z-index: 101;
+    /* above navbar background, below mobile menu (99) is fine since menu is below 100 too — but navbar itself is 100, so bump this to 101 to stay visible */
+  }
+}

@@ -1,0 +1,138 @@
+/* ===================================================
+   NEARBY CARD — Luxury Clean Photo Card
+=================================================== */
+
+.nearby-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #ececec;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  height: 100%;
+}
+
+.nearby-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(184, 138, 68, 0.4);
+  box-shadow: 0 20px 40px rgba(184, 138, 68, 0.16), 0 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* Image Wrapper */
+.nearby-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.nearby-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.nearby-card:hover .nearby-card-image {
+  transform: scale(1.08);
+}
+
+.nearby-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+}
+
+/* Badges */
+.nearby-card-category {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(184, 138, 68, 0.9);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.nearby-card-distance {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.nearby-card-distance svg {
+  color: #d4af37;
+}
+
+/* Content */
+.nearby-card-content {
+  padding: 20px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.nearby-card-title {
+  font-size: 18px;
+  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-bottom: 18px;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.nearby-card:hover .nearby-card-title {
+  color: #b88a44;
+}
+
+/* Footer / See More Button */
+.nearby-card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f0ece1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.see-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #b88a44;
+  transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.see-more-btn svg {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.nearby-card:hover .see-more-btn {
+  color: #9c722f;
+}
+
+.nearby-card:hover .see-more-btn svg {
+  transform: translateX(4px);
+}

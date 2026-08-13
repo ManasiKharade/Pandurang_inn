@@ -1,0 +1,8 @@
+{
+  "name": "Pandurang Inn",
+  "short_name": "PandurangInn",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8f6c3f"
+}

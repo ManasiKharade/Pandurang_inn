@@ -1,0 +1,152 @@
+/* ===================================================
+   CONTACT FORM — Premium Redesign
+=================================================== */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+/* ===== Form Header ===== */
+.form-header {
+  margin-bottom: 2px;
+}
+
+.form-header .form-eyebrow {
+  display: inline-block;
+  color: #b88a44;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.form-header h3 {
+  color: var(--secondary-color);
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  /* ✅ uses global 30px */
+  line-height: 1.2;
+  margin: 0;
+}
+
+.form-header p {
+  margin-top: 5px;
+  color: var(--gray);
+  font-size: var(--fs-body);
+  /* ✅ uses global 17px */
+  line-height: 1.5;
+}
+
+/* ===== Row (side-by-side fields) ===== */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ===== Group ===== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--dark-gray);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ===== Inputs & Textarea ===== */
+.form-group input,
+.form-group textarea,
+.form-group .type-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e4e0d8;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  font-family: inherit;
+  font-size: var(--fs-body);
+  /* ✅ uses global 17px */
+  background: #fdfcfa;
+  color: #222;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #bbb;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group .type-select:focus {
+  border-color: #b88a44;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(184, 138, 68, 0.1);
+}
+
+.form-group textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+/* ===== Error ===== */
+.error {
+  color: #c0392b;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* ===== Submit Button ===== */
+.send-btn {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #b88a44, #d4af37);
+  color: #fff;
+  font-weight: 600;
+  font-size: var(--fs-body);
+  /* ✅ uses global 17px */
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.send-btn::after {
+  content: "→";
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.send-btn:hover {
+  background: linear-gradient(135deg, #a07838, #c49e2a);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(184, 138, 68, 0.35);
+}
+
+.send-btn:hover::after {
+  transform: translateX(4px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 540px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

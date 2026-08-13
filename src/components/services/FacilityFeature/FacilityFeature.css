@@ -1,0 +1,116 @@
+/* ===================================================
+   FACILITY CARD — Premium Animation & Hover Effects
+=================================================== */
+
+.facility-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 20px;
+  text-align: center;
+  border: 1px solid #ececec;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  transform: translateY(35px) scale(0.96);
+  transition: 
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Gold Top Highlight Line on Hover */
+.facility-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #b88a44, #d4af37);
+  transition: width 0.4s ease;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Card Hover State */
+.facility-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(184, 138, 68, 0.4);
+  box-shadow: 0 20px 40px rgba(184, 138, 68, 0.16), 0 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+.facility-card:hover::before {
+  width: 100%;
+}
+
+/* Icon Container */
+.facility-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b88a44, #a07233);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  box-shadow: 0 6px 18px rgba(184, 138, 68, 0.28);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.facility-card:hover .facility-icon {
+  transform: scale(1.14) rotate(6deg);
+  background: linear-gradient(135deg, #d4af37, #b88a44);
+  box-shadow: 0 10px 24px rgba(184, 138, 68, 0.45);
+}
+
+/* Card Title */
+.facility-card h3 {
+  font-size: 17px;
+  color: #222222;
+  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-weight: 600;
+  margin-bottom: 10px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.facility-card:hover h3 {
+  color: #b88a44;
+}
+
+/* Card Gold Divider Line */
+.facility-divider {
+  width: 38px;
+  height: 2px;
+  background: rgba(184, 138, 68, 0.4);
+  margin: 0 auto 12px;
+  border-radius: 2px;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+.facility-card:hover .facility-divider {
+  width: 65px;
+  background: linear-gradient(90deg, #b88a44, #d4af37);
+}
+
+/* Card Description */
+.facility-card p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #666666;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.facility-card:hover p {
+  color: #444444;
+}

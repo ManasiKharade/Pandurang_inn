@@ -1,0 +1,57 @@
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid #ececec;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
+    transition: .35s;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    border-color: #B88A44;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .12);
+}
+
+.stat-card h3 {
+    font-size: 42px;
+    color: #B88A44;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    color: #666;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        /* changed from 1fr — stay at 2 columns */
+        gap: 14px;
+        /* slightly tighter gap on mobile */
+    }
+
+    .stat-card {
+        padding: 20px 12px;
+        /* reduced from 30px 20px so 2 cards fit comfortably */
+    }
+
+    .stat-card h3 {
+        font-size: 30px;
+        /* reduced from 42px to fit the narrower card width */
+    }
+
+    .stat-card p {
+        font-size: 13px;
+    }
+}

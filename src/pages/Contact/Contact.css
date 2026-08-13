@@ -1,0 +1,6 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  gap: 0.5rem;
+}

@@ -1,0 +1,121 @@
+/* ===================================================
+   CONTACT INFO — Dark Charcoal Panel (site secondary #1f1f1f)
+=================================================== */
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Header ===== */
+.contact-info-eyebrow {
+  display: inline-block;
+  color: #b88a44;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.contact-info h2 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  /* ✅ uses global 46px */
+  color: var(--secondary-color);
+  line-height: 1.25;
+  margin: 0 0 8px;
+}
+
+.contact-description {
+  color: var(--gray);
+  line-height: 1.65;
+  font-size: var(--fs-body);
+  /* ✅ uses global 17px */
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Info List ===== */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+/* ===== Info Card ===== */
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  cursor: default;
+}
+
+.info-card:hover {
+  background: rgba(212, 175, 55, 0.06);
+  border-color: rgba(212, 175, 55, 0.12);
+  transform: translateX(2px);
+}
+
+/* ===== Icon ===== */
+.info-icon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #b88a44, #d4af37);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(184, 138, 68, 0.28);
+}
+
+/* ===== Text ===== */
+.info-card h4 {
+  margin: 0 0 2px;
+  color: #b88a44;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.info-card p {
+  color: #333;
+  line-height: 1.45;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ===== Divider ===== */
+.contact-info-divider {
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, #D4AF37, transparent);
+  margin: 14px 0 0;
+  border-radius: 2px;
+}
+
+/* ===== Footer note ===== */
+.contact-info-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  font-style: italic;
+}

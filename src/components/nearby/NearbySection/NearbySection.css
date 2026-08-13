@@ -1,0 +1,156 @@
+.nearby-section {
+
+    width: 100%;
+
+    padding: 70px 5%;
+
+    background: #faf8f5;
+
+}
+
+/* Heading */
+
+.nearby-heading {
+
+    text-align: center;
+
+    max-width: 720px;
+
+    margin: 0 auto 50px;
+
+}
+
+.nearby-heading span {
+
+    color: #B88A44;
+
+    letter-spacing: 4px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+}
+
+.nearby-heading h2 {
+
+    margin-top: 18px;
+
+    font-size: 52px;
+
+    color: #222;
+
+    font-family: "Playfair Display", serif;
+
+}
+
+.nearby-heading p {
+
+    margin-top: 20px;
+
+    font-size: 17px;
+
+    color: #777;
+
+    line-height: 1.8;
+
+}
+
+/* Grid */
+/* =========================================================
+   NEARBY PLACES GRID
+========================================================= */
+
+.nearby-grid {
+    width: 100%;
+    max-width: 1215px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 14px 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CENTER LAST 3 CARDS
+========================================================= */
+
+/* 11th card */
+.nearby-grid> :nth-child(11) {
+    grid-column: 2;
+}
+
+/* 12th card */
+.nearby-grid> :nth-child(12) {
+    grid-column: 3;
+}
+
+/* 13th card */
+.nearby-grid> :nth-child(13) {
+    grid-column: 4;
+}
+
+/* Responsive */
+
+@media(max-width:1200px) {
+
+    .nearby-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .nearby-grid> :nth-child(11),
+    .nearby-grid> :nth-child(12),
+    .nearby-grid> :nth-child(13) {
+        grid-column: auto;
+    }
+
+}
+
+@media(max-width:900px) {
+
+    .nearby-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .nearby-section {
+        padding: 50px 4%;
+    }
+
+    .nearby-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .nearby-heading {
+        margin-bottom: 30px;
+    }
+
+    .nearby-heading h2 {
+        font-size: 34px;
+    }
+
+    .nearby-heading p {
+        font-size: 15px;
+    }
+
+}
+
+@media(max-width:400px) {
+    .nearby-heading h2 {
+        font-size: 28px;
+    }
+}

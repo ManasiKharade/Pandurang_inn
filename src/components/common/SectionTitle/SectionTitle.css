@@ -1,0 +1,13 @@
+.section-title {
+  margin-bottom: 2rem;
+}
+
+.section-title h2 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.section-title .subtitle {
+  color: var(--color-muted);
+  max-width: 700px;
+}

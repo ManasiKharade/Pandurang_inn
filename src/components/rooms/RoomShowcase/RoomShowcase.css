@@ -1,0 +1,117 @@
+.room-showcase {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 52% 48%;
+  gap: 40px;
+  align-items: start;
+  margin-top: 35px;
+}
+
+/* LEFT */
+
+.showcase-left {
+  width: 100%;
+}
+
+/* RIGHT */
+
+.showcase-right {
+  padding: 0 0 0 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* TAG */
+
+.hotel-tag {
+  color: #b88a44;
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* TITLE */
+
+.showcase-right h2 {
+  margin: 0 0 14px;
+  font-size: 42px;
+  line-height: 1.15;
+  font-family: "Playfair Display", serif;
+  color: #1e1e1e;
+}
+
+/* DESCRIPTION */
+
+.room-description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* GOLD LINE */
+
+.luxury-divider {
+  width: 80px;
+  height: 3px;
+  background: #B88A44;
+  margin: 0 0 20px;
+  border-radius: 2px;
+}
+
+/* HEADING */
+
+.amenities-title {
+  font-size: 15px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+/* BUTTON */
+
+.reserve-btn {
+  width: 220px;
+  height: 54px;
+  margin-top: 24px;
+  border: none;
+  border-radius: 50px;
+  background: #B88A44;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .35s;
+  align-self: center;
+  box-shadow: 0 10px 25px rgba(184, 138, 68, .25);
+}
+
+.reserve-btn:hover {
+  background: #a97933;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(184, 138, 68, .38);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px) {
+
+  .room-showcase {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .showcase-right {
+
+    position: static;
+
+  }
+}

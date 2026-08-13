@@ -1,0 +1,71 @@
+* {
+  font-family: "Times New Roman", Times, serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--body-font);
+  font-size: var(--fs-body);
+  color: var(--dark-gray);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  color: var(--secondary-color);
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: var(--fs-hero);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+h4 {
+  font-size: var(--fs-title);
+}
+
+p {
+  line-height: 1.8;
+  color: var(--gray);
+}
+
+/* Protect headings & paragraphs in all sections from being shrunk */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--current-h-size, var(--fs-h2));
+  font-weight: 700;
+}
+
+h1 {
+  --current-h-size: var(--fs-h1);
+}
+
+h2 {
+  --current-h-size: var(--fs-h2);
+}
+
+h3 {
+  --current-h-size: var(--fs-h3);
+}
+
+h4 {
+  --current-h-size: var(--fs-title);
+}

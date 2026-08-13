@@ -1,0 +1,109 @@
+.about-content{
+
+    width:100%;
+
+}
+
+.about-tag{
+
+    color:#B88A44;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+}
+
+.about-content h2{
+
+    margin-top:18px;
+
+    font-size:48px;
+
+    color:#222;
+
+    line-height:1.25;
+
+    font-family:"Playfair Display", serif;
+
+}
+
+.about-content p{
+
+    margin-top:22px;
+
+    color:#666;
+
+    line-height:1.9;
+
+    font-size:16px;
+
+}
+
+.about-highlights{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin:35px 0;
+
+}
+
+.highlight{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:500;
+
+    color:#333;
+
+}
+
+.highlight svg{
+
+    color:#B88A44;
+
+    font-size:18px;
+
+}
+
+.about-btn{
+
+    padding:15px 34px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#B88A44;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.about-btn:hover{
+
+    background:#9b7236;
+
+    transform:translateY(-2px);
+
+}

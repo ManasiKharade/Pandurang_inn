@@ -1,0 +1,68 @@
+.room-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.room-tab {
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  position: relative;
+
+  padding-bottom: 12px;
+
+  transition: .35s;
+}
+
+.room-tab:hover {
+
+  color: #b88a44;
+}
+
+.room-tab::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: 0;
+
+  width: 0;
+
+  height: 2px;
+
+  background: #b88a44;
+
+  transition: .35s;
+}
+
+.room-tab:hover::after {
+
+  width: 100%;
+}
+
+.room-tab.active {
+
+  color: #111;
+}
+
+.room-tab.active::after {
+
+  width: 100%;
+}

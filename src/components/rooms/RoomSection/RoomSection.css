@@ -1,0 +1,348 @@
+/* ==========================
+   ROOM SECTION LAYOUT
+========================== */
+
+.room-section {
+  padding: 60px 0 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.room-section:nth-child(even) {
+  background: var(--off-white, #faf8f4);
+}
+
+.room-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  padding-bottom: 80px;
+}
+
+.room-section.reverse .room-container {
+  direction: rtl;
+}
+
+.room-section.reverse .room-container>* {
+  direction: ltr;
+}
+
+/* ==========================
+   IMAGE COLUMN
+========================== */
+
+.room-image-col {
+  position: relative;
+}
+
+/* ==========================
+   CONTENT COLUMN
+========================== */
+
+.room-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Category Badge */
+.room-category-badge {
+  display: inline-block;
+  color: var(--primary-color, #b88a44);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--body-font, "Poppins", sans-serif);
+  margin-bottom: 14px;
+}
+
+/* Room Name */
+.room-name {
+  font-family: var(--heading-font, "Cormorant Garamond", serif);
+  font-size: clamp(34px, 3.5vw, 50px);
+  font-weight: 700;
+  color: var(--secondary-color, #1f1f1f);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+/* Price Tag */
+.room-price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.price-label {
+  font-size: 13px;
+  color: var(--gray, #777);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.price-value {
+  font-family: var(--heading-font, "Cormorant Garamond", serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary-color, #b88a44);
+}
+
+/* Description */
+.room-desc {
+  font-size: 16px;
+  color: var(--gray, #777);
+  line-height: 1.9;
+  margin-bottom: 32px;
+}
+
+/* ==========================
+   HIGHLIGHTS
+========================== */
+
+.room-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.highlight-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--off-white, #faf8f4);
+  border: 1px solid var(--border, #e8e8e8);
+  border-radius: 14px;
+  padding: 16px 14px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.room-section:nth-child(even) .highlight-card {
+  background: #fff;
+}
+
+.highlight-card:hover {
+  box-shadow: 0 8px 24px rgba(184, 138, 68, 0.12);
+  transform: translateY(-3px);
+}
+
+.highlight-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.highlight-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.highlight-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray, #777);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.highlight-value {
+  display: block;
+  font-size: 13px;
+  color: var(--secondary-color, #1f1f1f);
+  font-weight: 600;
+}
+
+/* ==========================
+   BOOK BUTTON
+========================== */
+
+.room-book-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  align-self: center;
+  letter-spacing: 0.5px;
+}
+
+.room-book-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s;
+}
+
+.room-book-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(184, 138, 68, 0.4);
+}
+
+.room-book-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ==========================
+   AMENITIES STRIP
+========================== */
+
+.room-amenities-strip {
+  background: var(--secondary-color, #1f1f1f);
+  padding: 50px 0;
+  margin-top: 0;
+}
+
+.room-section:nth-child(even) .room-amenities-strip {
+  background: #2a2a2a;
+}
+
+.amenities-title {
+  text-align: center;
+  font-family: var(--heading-font, "Cormorant Garamond", serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.amenities-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.amenities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.amenity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.amenity-pill:hover {
+  background: rgba(184, 138, 68, 0.2);
+  border-color: rgba(184, 138, 68, 0.5);
+  transform: translateY(-2px);
+}
+
+.amenity-icon {
+  display: flex;
+  align-items: center;
+  color: var(--primary-light, #d8b85f);
+}
+
+.amenity-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 1100px) {
+  .room-container {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .room-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+  }
+
+  .room-section.reverse .room-container {
+    direction: ltr;
+  }
+
+  .room-name {
+    font-size: 36px;
+  }
+
+  .room-highlights {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .room-section {
+    padding-top: 50px;
+  }
+
+  .room-container {
+    gap: 30px;
+    padding-bottom: 50px;
+  }
+
+  .room-name {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .room-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .room-highlights {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .room-book-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .amenities-grid {
+    gap: 8px;
+  }
+
+  .amenity-pill {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

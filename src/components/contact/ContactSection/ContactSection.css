@@ -1,0 +1,188 @@
+/* ===================================================
+   CONTACT SECTION
+=================================================== */
+
+.contact-section {
+  width: 100%;
+  padding: 28px 0 56px;
+  background: #f8f5f0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle background glow */
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ===== Section Heading ===== */
+.contact-heading {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 28px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.contact-heading span {
+  display: inline-block;
+  /* ✅ needed for letter-spacing to look right */
+  color: #b88a44;
+  font-size: 11px;
+  /* ✅ kept small (this is an "eyebrow" label) */
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.contact-heading h2 {
+  margin-top: 8px;
+  color: var(--secondary-color);
+  /* ✅ uses global font family + 46px + weight 700 */
+}
+
+.contact-heading p {
+  margin-top: 8px;
+  /* uses global font + 17px + color */
+}
+
+/* When heading is placed inside the card, span it across both columns */
+.contact-card>.contact-heading {
+  grid-column: 1 / -1;
+  background: #ffffff;
+  padding: 34px 42px 22px;
+  box-sizing: border-box;
+  margin: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: none;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-card>.contact-heading h2 {
+  margin-top: 6px;
+}
+
+.contact-card>.contact-heading p {
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+/* ===== Centering Wrapper ===== */
+.contact-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+/* inner card wraps both panels */
+.contact-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+/* ===== Left — Form Panel ===== */
+.contact-left {
+  background: #ffffff;
+  padding: 36px 42px;
+}
+
+/* ===== Right — Info Panel ===== */
+.contact-right {
+  background: #ffffff;
+  padding: 36px 38px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle decorative accents */
+.contact-right::before,
+.contact-right::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.contact-right::before {
+  top: -20px;
+  right: -20px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.contact-right::after {
+  bottom: -12px;
+  left: -12px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+  z-index: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .contact-container {
+    padding: 0 20px;
+  }
+
+  .contact-card {
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+  }
+
+  .contact-heading h2 {
+    font-size: 36px;
+    /* ✅ scaled down for tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-section {
+    padding: 40px 0 48px;
+  }
+
+  .contact-container {
+    padding: 0 14px;
+  }
+
+  .contact-left {
+    padding: 26px 20px;
+  }
+
+  .contact-right {
+    padding: 28px 20px;
+  }
+
+  .contact-heading h2 {
+    font-size: 30px;
+    /* ✅ scaled down for mobile */
+  }
+
+  .contact-card>.contact-heading {
+    padding: 24px 20px 18px;
+    /* ✅ tighter padding on mobile */
+  }
+}

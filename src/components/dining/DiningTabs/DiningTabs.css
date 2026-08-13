@@ -1,0 +1,53 @@
+.dining-tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin:50px 0;
+
+}
+
+.dining-tab{
+
+    padding:15px 28px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#fff;
+
+    border:1px solid #e5e5e5;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.dining-tab:hover{
+
+    border-color:#B88A44;
+
+    color:#B88A44;
+
+}
+
+.dining-tab.active{
+
+    background:#B88A44;
+
+    color:#fff;
+
+    border-color:#B88A44;
+
+}

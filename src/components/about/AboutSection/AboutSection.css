@@ -1,0 +1,31 @@
+.about-section {
+
+    width: 100%;
+
+    padding: 70px 5%;
+
+    background: #faf8f5;
+
+}
+
+.about-container {
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+}
+
+@media(max-width:992px) {
+
+    .about-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

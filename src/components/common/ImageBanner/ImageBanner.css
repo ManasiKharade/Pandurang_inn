@@ -1,0 +1,18 @@
+.image-banner {
+  min-height: 280px;
+  border-radius: 24px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.image-banner-overlay {
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+}

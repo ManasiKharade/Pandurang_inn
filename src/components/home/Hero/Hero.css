@@ -1,0 +1,355 @@
+/* ========== HERO: SPLIT LAYOUT ========== */
+.hero {
+  display: flex;
+  min-height: 100vh;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- LEFT SIDE (Text Content) ---- */
+.hero-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 40px 40px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: radial-gradient(ellipse at 60% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+}
+
+.hero-content {
+  max-width: 560px;
+  animation: fadeLeft 1.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 9px 22px;
+  border-radius: 40px;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.08);
+  backdrop-filter: blur(8px);
+  font-size: 13px;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.hero-logo {
+  width: 140px;
+  height: auto;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 2px 12px rgba(212, 175, 55, 0.3));
+  animation:
+    logoEntrance 1s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    logoFloat 3s ease-in-out 1s infinite,
+    logoGlow 4s ease-in-out 1s infinite;
+  opacity: 0;
+}
+
+@keyframes logoEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes logoFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes logoGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 2px 12px rgba(212, 175, 55, 0.3));
+  }
+
+  50% {
+    filter: drop-shadow(0 4px 24px rgba(212, 175, 55, 0.7)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.2));
+  }
+}
+
+.hero-title {
+  font-size: clamp(36px, 4vw, 64px);
+  line-height: 1.1;
+  color: #fff;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+}
+
+.hero-title span {
+  color: #D4AF37;
+  font-style: italic;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #D4AF37;
+  margin: 16px 0 14px;
+  font-size: 14px;
+}
+
+.hero-divider span {
+  width: 56px;
+  height: 1px;
+  background: #D4AF37;
+}
+
+.hero-description {
+  color: #c8c8c8;
+  max-width: 440px;
+  line-height: 1.8;
+  font-size: 15px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  padding: 12px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  width: 100%;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.stat-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D4AF37;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.stat-text h3 {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 1px;
+  font-family: "Playfair Display", serif;
+  white-space: nowrap;
+}
+
+.stat-text p {
+  color: #aaa;
+  font-size: 10px;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+/* ---- RIGHT SIDE (Full Image) ---- */
+.hero-right {
+  flex: 0 0 42%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  animation: imageReveal 1.4s ease;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0a0a0a 0%, transparent 30%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablet — unchanged from before */
+@media (max-width: 1024px) {
+  .hero-right {
+    flex: 0 0 38%;
+  }
+
+  .hero-left {
+    padding: 120px 30px 50px;
+  }
+
+  .stat {
+    min-width: 120px;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .stat-text h3 {
+    font-size: 16px;
+  }
+}
+
+/* Mobile: image becomes a full-bleed background, all content overlaid on top */
+@media (max-width: 768px) {
+  .hero {
+    display: block;
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero-right {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(4px);
+    transform: scale(1.08);
+  }
+
+  .hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(10, 10, 10, 0.55) 0%,
+        rgba(10, 10, 10, 0.75) 45%,
+        rgba(10, 10, 10, 0.95) 100%);
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 2;
+    padding: 130px 16px 44px;
+    /* clears the fixed 70px navbar */
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-logo {
+    width: 110px;
+    margin-bottom: 14px;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .hero-divider {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* always exactly 2 per row */
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .stat {
+    border-right: none;
+    border-bottom: none;
+    /* grid gap replaces the divider lines */
+    justify-content: center;
+    padding: 10px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+  }
+
+  .stat:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Small phones: only stat layout adjusts — no padding/height overrides here anymore,
+   so the 768px rules above (130px top padding, full-bleed background image)
+   keep applying at every mobile width down to the smallest phones. */
+@media (max-width: 480px) {}
