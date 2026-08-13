@@ -15,7 +15,7 @@ import "./styles/responsive.css";
 
 // Keep this if global.css contains additional layout/component styles
 import "./styles/global.css";
-
+scrollRestoration = 'manual'
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
