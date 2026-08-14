@@ -113,6 +113,7 @@ function saveLocalEnquiry(cleanData) {
  * Saves a new enquiry to Firestore (or LocalStorage fallback) with status "new".
  */
 export async function submitEnquiry({ name, email, phone, message, type }) {
+  console.log("Submitting enquiry. Firebase configured?", isFirebaseConfigured, "db:", !!db);
   const cleanData = {
     name,
     email,
@@ -145,6 +146,7 @@ export async function submitEnquiry({ name, email, phone, message, type }) {
  * Returns enquiries newest-first.
  */
 export async function getEnquiries() {
+  console.log("Fetching enquiries. Firebase configured?", isFirebaseConfigured, "db:", !!db);
   if (!isFirebaseConfigured || !db) {
     return getMockEnquiries();
   }

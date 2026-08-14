@@ -3,6 +3,7 @@ import Hero from "../../components/home/Hero/Hero";
 import About from "../About/About";
 // import Dining from "../Dining/Dining";
 import Rooms from "../Rooms/Rooms";
+import Dormitory from "../Dormitory/Dormitory";
 // import MeetingEvents from "../MeetingEvents/MeetingEvents";
 import Services from "../Services/Services";
 import NearbyPlaces from "../NearbyPlaces/NearbyPlaces";
@@ -25,6 +26,10 @@ function Home() {
 
       <section id="rooms">
         <Rooms />
+      </section>
+
+      <section id="dormitory">
+        <Dormitory />
       </section>
 
       {/* <section id="events">

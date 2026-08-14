@@ -11,7 +11,7 @@ export const ENQUIRY_TYPES = {
 export const ENQUIRY_TYPE_LABELS = {
   [ENQUIRY_TYPES.GENERAL]: "General Enquiry",
   [ENQUIRY_TYPES.STAY]: "Book Your Stay",
-  [ENQUIRY_TYPES.EVENT]: "Book Your Event",
+  [ENQUIRY_TYPES.DORMITORY]: "Book Your Dormitory",
 };
 
 export const ENQUIRY_TYPE_LIST = Object.values(ENQUIRY_TYPES);

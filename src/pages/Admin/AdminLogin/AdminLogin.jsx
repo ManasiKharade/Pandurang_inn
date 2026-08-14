@@ -8,7 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 import logo from "../../../assets/logos/PANDURANG_INN LOGO.png";
 
 function AdminLogin() {
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, resetAdminPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,6 +16,7 @@ function AdminLogin() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const [error, setError] = useState("");
 
   const from = location.state?.from?.pathname || "/admin/dashboard";
@@ -45,6 +46,25 @@ function AdminLogin() {
         : "Invalid email or password.");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    setError("");
+    if (!email.trim()) {
+      setError("Please enter your email address to reset your password.");
+      return;
+    }
+    
+    setIsResetting(true);
+    try {
+      await resetAdminPassword(email.trim());
+      toast.success("Password reset link sent to your email!");
+    } catch (err) {
+      console.error("Password reset failed:", err);
+      setError(err?.message || "Failed to send password reset email.");
+    } finally {
+      setIsResetting(false);
     }
   };
 
@@ -92,6 +112,16 @@ function AdminLogin() {
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+          <div className="admin-forgot-password-wrap">
+            <button
+              type="button"
+              className="admin-forgot-password-btn"
+              onClick={handleForgotPassword}
+              disabled={isResetting}
+            >
+              {isResetting ? "Sending link..." : "Forgot Password?"}
             </button>
           </div>
         </div>

@@ -3,8 +3,10 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updatePassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
 import { auth, db, isFirebaseConfigured } from "../firebase/firebase";
 
 const AuthContext = createContext(null);
@@ -133,7 +135,63 @@ export function AuthProvider({ children }) {
     return Promise.resolve();
   };
 
-  const value = { currentUser, loading, login, logout };
+  const updateAdminPassword = async (newPassword) => {
+    if (!currentUser) throw new Error("No user is currently logged in.");
+
+    // 1. Check if it's the mock user
+    if (currentUser.isMock) {
+      // For mock user, just simulate success since it's hardcoded to admin123
+      toast.success("Mock password updated (simulated).");
+      return;
+    }
+
+    // 2. Check if it's a Firestore DB user
+    const savedDbUser = localStorage.getItem("hotel_raks_db_user");
+    if (savedDbUser && db) {
+      try {
+        const adminDocRef = doc(db, "admins", currentUser.uid);
+        await updateDoc(adminDocRef, { password: newPassword });
+        // Update local storage to match
+        const updatedUser = { ...currentUser, password: newPassword };
+        localStorage.setItem("hotel_raks_db_user", JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+        return;
+      } catch (dbError) {
+        throw new Error("Failed to update database password: " + dbError.message);
+      }
+    }
+
+    // 3. Otherwise, try standard Firebase Authentication
+    if (isFirebaseConfigured && auth && auth.currentUser) {
+      try {
+        await updatePassword(auth.currentUser, newPassword);
+      } catch (authError) {
+        throw new Error("Failed to update Firebase Auth password: " + authError.message);
+      }
+    } else {
+      throw new Error("Could not determine user type to update password.");
+    }
+  };
+
+  const resetAdminPassword = async (email) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error("Firebase isn't configured. Reset password requires Firebase.");
+    }
+    
+    // Note: This only resets Firebase Authentication passwords.
+    // If they are a purely Firestore-driven user, they cannot use this email reset link directly.
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (authError) {
+      const readableMessage =
+        authError.code === "auth/user-not-found"
+          ? "No admin account found with this email."
+          : authError.message || "Failed to send password reset email.";
+      throw new Error(readableMessage);
+    }
+  };
+
+  const value = { currentUser, loading, login, logout, updateAdminPassword, resetAdminPassword };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

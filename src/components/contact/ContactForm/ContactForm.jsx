@@ -50,7 +50,6 @@ function ContactForm() {
 
       case "message":
         if (!value.trim()) error = "Please enter your message.";
-        else if (value.trim().length < 15) error = "Message should contain at least 15 characters.";
         break;
 
       default:

@@ -16,11 +16,14 @@ import {
   FiTrendingUp,
   FiChevronDown,
   FiChevronUp,
+  FiSettings,
+  FiLock,
 } from "react-icons/fi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 
 import "./AdminDashboard.css";
 import { useAuth } from "../../../context/AuthContext";
+import logo from "../../../assets/logos/PANDURANG_INN LOGO.png";
 import {
   getEnquiries,
   updateEnquiryStatus,
@@ -108,14 +111,20 @@ function exportToCSV(enquiries) {
 }
 
 function AdminDashboard() {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, updateAdminPassword } = useAuth();
 
+  const [activeTab, setActiveTab] = useState("enquiries");
   const [enquiries, setEnquiries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedId, setExpandedId] = useState(null);
+
+  // Settings State
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
 
   const loadEnquiries = async () => {
     setIsLoading(true);
@@ -221,18 +230,67 @@ function AdminDashboard() {
     }
   };
 
+  const handleUpdatePassword = async (e) => {
+    e.preventDefault();
+    if (!newPassword || !confirmPassword) {
+      toast.error("Please fill out all fields.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
+
+    setIsUpdatingPassword(true);
+    try {
+      await updateAdminPassword(newPassword);
+      toast.success("Password updated successfully!");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+      console.error("Failed to update password:", error);
+      toast.error(error.message || "Failed to update password.");
+    } finally {
+      setIsUpdatingPassword(false);
+    }
+  };
+
   return (
     <div className="admin-dashboard">
       {/* Header */}
       <header className="admin-header">
-        <div>
-          <span className="admin-header-eyebrow">Pandurang Inn</span>
-          <h1>Enquiries Dashboard</h1>
-          <p className="admin-header-sub">
-            Manage and respond to guest enquiries
-          </p>
+        <div className="admin-header-title-area">
+          <img src={logo} alt="Pandurang Inn" className="admin-dashboard-logo" />
+          <div>
+            <span className="admin-header-eyebrow">Pandurang Inn</span>
+            <h1>{activeTab === "enquiries" ? "Enquiries Dashboard" : "Admin Settings"}</h1>
+            <p className="admin-header-sub">
+              {activeTab === "enquiries" ? "Manage and respond to guest enquiries" : "Manage your admin account preferences"}
+            </p>
+          </div>
         </div>
         <div className="admin-header-actions">
+          {activeTab === "enquiries" ? (
+            <button
+              className="admin-btn admin-btn-secondary"
+              onClick={() => setActiveTab("settings")}
+            >
+              <FiSettings />
+              <span>Settings</span>
+            </button>
+          ) : (
+            <button
+              className="admin-btn admin-btn-secondary"
+              onClick={() => setActiveTab("enquiries")}
+            >
+              <FiInbox />
+              <span>Enquiries</span>
+            </button>
+          )}
           <button
             className="admin-btn admin-btn-secondary"
             onClick={loadEnquiries}
@@ -241,14 +299,6 @@ function AdminDashboard() {
             <FiRefreshCw className={isLoading ? "spin" : ""} />
             <span>{isLoading ? "Refreshing..." : "Refresh"}</span>
           </button>
-          <button
-            className="admin-btn admin-btn-secondary"
-            onClick={() => exportToCSV(filteredEnquiries)}
-            disabled={filteredEnquiries.length === 0}
-          >
-            <FiDownload />
-            <span>Export CSV</span>
-          </button>
           <button className="admin-btn admin-btn-outline" onClick={handleLogout}>
             <FiLogOut />
             <span>Logout</span>
@@ -256,217 +306,260 @@ function AdminDashboard() {
         </div>
       </header>
 
-      <div className="admin-content">
-        {/* Stat Cards */}
-        <div className="admin-stats-grid">
-          <div className="admin-stat-card">
-            <div className="admin-stat-icon admin-stat-icon-total">
-              <FiInbox />
+      {activeTab === "settings" ? (
+        <div className="admin-content admin-settings-content">
+          <div className="admin-settings-card">
+            <div className="admin-settings-card-header">
+              <h3>Change Password</h3>
+              <p>Update your admin account password here.</p>
             </div>
-            <div className="admin-stat-info">
-              <span className="admin-stat-label">Total Enquiries</span>
-              <h3>{stats.total}</h3>
-            </div>
-          </div>
-
-          <div className="admin-stat-card">
-            <div className="admin-stat-icon admin-stat-icon-new">
-              <HiOutlineMailOpen />
-            </div>
-            <div className="admin-stat-info">
-              <span className="admin-stat-label">New</span>
-              <h3>{stats.new}</h3>
-              {stats.new > 0 && <span className="admin-stat-pulse">Action needed</span>}
-            </div>
-          </div>
-
-          <div className="admin-stat-card">
-            <div className="admin-stat-icon admin-stat-icon-today">
-              <FiClock />
-            </div>
-            <div className="admin-stat-info">
-              <span className="admin-stat-label">Today</span>
-              <h3>{stats.today}</h3>
-            </div>
-          </div>
-
-          <div className="admin-stat-card">
-            <div className="admin-stat-icon admin-stat-icon-week">
-              <FiTrendingUp />
-            </div>
-            <div className="admin-stat-info">
-              <span className="admin-stat-label">This Week</span>
-              <h3>{stats.thisWeek}</h3>
-            </div>
-          </div>
-        </div>
-
-        {/* Filters Bar */}
-        <div className="admin-filters-bar">
-          <div className="admin-status-tabs">
-            {STATUS_FILTERS.map((f) => (
-              <button
-                key={f}
-                className={`admin-status-tab ${statusFilter === f ? "active" : ""}`}
-                onClick={() => setStatusFilter(f)}
-              >
-                {f.charAt(0).toUpperCase() + f.slice(1)}
-                <span className="admin-tab-count">{statusCounts[f]}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Search + Type Filter */}
-        <div className="admin-search-row">
-          <div className="admin-search-box">
-            <FiSearch className="admin-search-icon" />
-            <input
-              type="text"
-              placeholder="Search by name, email, phone, or message..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            {searchQuery && (
-              <button
-                className="admin-search-clear"
-                onClick={() => setSearchQuery("")}
-              >
-                <FiX />
-              </button>
-            )}
-          </div>
-
-          <select
-            className="admin-type-select"
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-          >
-            <option value="all">All Types</option>
-            <option value={ENQUIRY_TYPES.GENERAL}>General</option>
-            <option value={ENQUIRY_TYPES.ROOM}>Room Booking</option>
-            <option value={ENQUIRY_TYPES.STAY}>Stay</option>
-            <option value={ENQUIRY_TYPES.EVENT}>Event</option>
-          </select>
-        </div>
-
-        {/* Results Count */}
-        <div className="admin-results-info">
-          <span>
-            Showing <strong>{filteredEnquiries.length}</strong> of {enquiries.length} enquiries
-          </span>
-        </div>
-
-        {/* Enquiry List */}
-        <div className="admin-list">
-          {isLoading && enquiries.length === 0 && (
-            <div className="admin-empty">
-              <FiRefreshCw className="admin-empty-icon spin" />
-              <p>Loading enquiries...</p>
-            </div>
-          )}
-
-          {!isLoading && filteredEnquiries.length === 0 && (
-            <div className="admin-empty">
-              <FiAlertCircle className="admin-empty-icon" />
-              <h3>No enquiries found</h3>
-              <p>Try adjusting your filters or search query</p>
-            </div>
-          )}
-
-          {filteredEnquiries.map((enquiry) => {
-            const isExpanded = expandedId === enquiry.id;
-            return (
-              <div
-                key={enquiry.id}
-                className={`admin-card status-${enquiry.status} ${isExpanded ? "expanded" : ""}`}
-              >
-                <div
-                  className="admin-card-summary"
-                  onClick={() => handleExpand(enquiry)}
-                >
-                  <div className="admin-card-left">
-                    <span className={`admin-status-dot status-${enquiry.status}`} />
-                    <div>
-                      <h3 className="admin-card-name">
-                        {enquiry.name}
-                        {enquiry.status === "new" && (
-                          <span className="admin-new-indicator">NEW</span>
-                        )}
-                      </h3>
-                      <p className="admin-card-meta">
-                        {enquiry.email} • {enquiry.phone}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="admin-card-right">
-                    <div className="admin-card-info">
-                      <span className={`admin-badge type-${enquiry.type}`}>
-                        {typeLabel(enquiry.type)}
-                      </span>
-                      <span className={`admin-badge status-${enquiry.status}`}>
-                        {enquiry.status}
-                      </span>
-                    </div>
-                    <span className="admin-card-time" title={formatDate(enquiry.createdAt)}>
-                      {relativeTime(enquiry.createdAt)}
-                    </span>
-                    <span className="admin-expand-icon">
-                      {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
-                    </span>
-                  </div>
+            <form onSubmit={handleUpdatePassword} className="admin-settings-form">
+              <div className="admin-form-group">
+                <label>New Password</label>
+                <div className="admin-input-wrap">
+                  <FiLock className="admin-input-icon" />
+                  <input
+                    type="password"
+                    placeholder="Enter new password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
                 </div>
+              </div>
+              <div className="admin-form-group">
+                <label>Confirm Password</label>
+                <div className="admin-input-wrap">
+                  <FiLock className="admin-input-icon" />
+                  <input
+                    type="password"
+                    placeholder="Confirm new password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="admin-btn admin-btn-primary"
+                disabled={isUpdatingPassword}
+              >
+                {isUpdatingPassword ? "Updating..." : "Update Password"}
+              </button>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <div className="admin-content">
+          {/* Stat Cards */}
+          <div className="admin-stats-grid">
+            <div className="admin-stat-card">
+              <div className="admin-stat-icon admin-stat-icon-total">
+                <FiInbox />
+              </div>
+              <div className="admin-stat-info">
+                <span className="admin-stat-label">Total Enquiries</span>
+                <h3>{stats.total}</h3>
+              </div>
+            </div>
 
-                {isExpanded && (
-                  <div className="admin-card-details">
-                    <div className="admin-message-box">
-                      <span className="admin-message-label">Message</span>
-                      <p className="admin-message-text">{enquiry.message}</p>
+            <div className="admin-stat-card">
+              <div className="admin-stat-icon admin-stat-icon-new">
+                <HiOutlineMailOpen />
+              </div>
+              <div className="admin-stat-info">
+                <span className="admin-stat-label">New</span>
+                <h3>{stats.new}</h3>
+                {stats.new > 0 && <span className="admin-stat-pulse">Action needed</span>}
+              </div>
+            </div>
+
+            <div className="admin-stat-card">
+              <div className="admin-stat-icon admin-stat-icon-today">
+                <FiClock />
+              </div>
+              <div className="admin-stat-info">
+                <span className="admin-stat-label">Today</span>
+                <h3>{stats.today}</h3>
+              </div>
+            </div>
+
+            <div className="admin-stat-card">
+              <div className="admin-stat-icon admin-stat-icon-week">
+                <FiTrendingUp />
+              </div>
+              <div className="admin-stat-info">
+                <span className="admin-stat-label">This Week</span>
+                <h3>{stats.thisWeek}</h3>
+              </div>
+            </div>
+          </div>
+
+          {/* Filters Bar */}
+          <div className="admin-filters-bar">
+            <div className="admin-status-tabs">
+              {STATUS_FILTERS.map((f) => (
+                <button
+                  key={f}
+                  className={`admin-status-tab ${statusFilter === f ? "active" : ""}`}
+                  onClick={() => setStatusFilter(f)}
+                >
+                  {f.charAt(0).toUpperCase() + f.slice(1)}
+                  <span className="admin-tab-count">{statusCounts[f]}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Search + Type Filter */}
+          <div className="admin-search-row">
+            <div className="admin-search-box">
+              <FiSearch className="admin-search-icon" />
+              <input
+                type="text"
+                placeholder="Search by name, email, phone, or message..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  className="admin-search-clear"
+                  onClick={() => setSearchQuery("")}
+                >
+                  <FiX />
+                </button>
+              )}
+            </div>
+
+            <select
+              className="admin-type-select"
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
+            >
+              <option value="all">All Types</option>
+              <option value={ENQUIRY_TYPES.GENERAL}>General</option>
+              <option value={ENQUIRY_TYPES.ROOM}>Room Booking</option>
+              <option value={ENQUIRY_TYPES.DORMITORY}>Dormitory</option>
+            </select>
+          </div>
+
+          {/* Results Count */}
+          <div className="admin-results-info">
+            <span>
+              Showing <strong>{filteredEnquiries.length}</strong> of {enquiries.length} enquiries
+            </span>
+          </div>
+
+          {/* Enquiry List */}
+          <div className="admin-list">
+            {isLoading && enquiries.length === 0 && (
+              <div className="admin-empty">
+                <FiRefreshCw className="admin-empty-icon spin" />
+                <p>Loading enquiries...</p>
+              </div>
+            )}
+
+            {!isLoading && filteredEnquiries.length === 0 && (
+              <div className="admin-empty">
+                <FiAlertCircle className="admin-empty-icon" />
+                <h3>No enquiries found</h3>
+                <p>Try adjusting your filters or search query</p>
+              </div>
+            )}
+
+            {filteredEnquiries.map((enquiry) => {
+              const isExpanded = expandedId === enquiry.id;
+              return (
+                <div
+                  key={enquiry.id}
+                  className={`admin-card status-${enquiry.status} ${isExpanded ? "expanded" : ""}`}
+                >
+                  <div
+                    className="admin-card-summary"
+                    onClick={() => handleExpand(enquiry)}
+                  >
+                    <div className="admin-card-left">
+                      <span className={`admin-status-dot status-${enquiry.status}`} />
+                      <div>
+                        <h3 className="admin-card-name">
+                          {enquiry.name}
+                          {enquiry.status === "new" && (
+                            <span className="admin-new-indicator">NEW</span>
+                          )}
+                        </h3>
+                        <p className="admin-card-meta">
+                          {enquiry.email} • {enquiry.phone}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="admin-card-footer">
-                      <div className="admin-status-control">
-                        <label>Status:</label>
-                        <select
-                          value={enquiry.status}
-                          onChange={(e) => handleStatusChange(enquiry.id, e.target.value)}
-                          className={`admin-status-select status-${enquiry.status}`}
-                        >
-                          <option value="new">New</option>
-                          <option value="read">Read</option>
-                          <option value="resolved">Resolved</option>
-                        </select>
+                    <div className="admin-card-right">
+                      <div className="admin-card-info">
+                        <span className={`admin-badge type-${enquiry.type}`}>
+                          {typeLabel(enquiry.type)}
+                        </span>
+                        <span className={`admin-badge status-${enquiry.status}`}>
+                          {enquiry.status}
+                        </span>
                       </div>
-
-                      <div className="admin-card-actions">
-                        <a
-                          href={`mailto:${enquiry.email}`}
-                          className="admin-btn admin-btn-primary"
-                        >
-                          <FiMail /> Reply by Email
-                        </a>
-                        <a
-                          href={`tel:${enquiry.phone}`}
-                          className="admin-btn admin-btn-secondary"
-                        >
-                          <FiPhone /> Call
-                        </a>
-                        <button
-                          className="admin-btn admin-btn-danger"
-                          onClick={() => handleDelete(enquiry.id)}
-                        >
-                          <FiTrash2 /> Delete
-                        </button>
-                      </div>
+                      <span className="admin-card-time" title={formatDate(enquiry.createdAt)}>
+                        {relativeTime(enquiry.createdAt)}
+                      </span>
+                      <span className="admin-expand-icon">
+                        {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
+                      </span>
                     </div>
                   </div>
-                )}
-              </div>
-            );
-          })}
+
+                  {isExpanded && (
+                    <div className="admin-card-details">
+                      <div className="admin-message-box">
+                        <span className="admin-message-label">Message</span>
+                        <p className="admin-message-text">{enquiry.message}</p>
+                      </div>
+
+                      <div className="admin-card-footer">
+                        <div className="admin-status-control">
+                          <label>Status:</label>
+                          <select
+                            value={enquiry.status}
+                            onChange={(e) => handleStatusChange(enquiry.id, e.target.value)}
+                            className={`admin-status-select status-${enquiry.status}`}
+                          >
+                            <option value="new">New</option>
+                            <option value="read">Read</option>
+                            <option value="resolved">Resolved</option>
+                          </select>
+                        </div>
+
+                        <div className="admin-card-actions">
+                          <a
+                            href={`mailto:${enquiry.email}`}
+                            className="admin-btn admin-btn-primary"
+                          >
+                            <FiMail /> Reply by Email
+                          </a>
+                          <a
+                            href={`tel:${enquiry.phone}`}
+                            className="admin-btn admin-btn-secondary"
+                          >
+                            <FiPhone /> Call
+                          </a>
+                          <button
+                            className="admin-btn admin-btn-danger"
+                            onClick={() => handleDelete(enquiry.id)}
+                          >
+                            <FiTrash2 /> Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
