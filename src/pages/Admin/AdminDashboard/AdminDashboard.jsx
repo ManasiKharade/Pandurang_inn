@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import {
   FiSearch,
@@ -266,8 +266,8 @@ function AdminDashboard() {
           <div className="admin-topbar-left">
             <div className="admin-brand">
               <img src={logo} alt="Pandurang Inn" className="admin-dashboard-logo" />
+              <span className="admin-hotel-name">PANDURANG INN</span>
             </div>
-            <span className="admin-hotel-name">PANDURANG INN</span>
             <button 
               className="admin-mobile-menu-btn" 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -466,8 +466,8 @@ function AdminDashboard() {
               </span>
             </div>
 
-            {/* Enquiry List */}
-            <div className="admin-list">
+            {/* Enquiry List (Table Layout) */}
+            <div className="admin-table-container">
               {isLoading && enquiries.length === 0 && (
                 <div className="admin-empty">
                   <FiRefreshCw className="admin-empty-icon spin" />
@@ -483,97 +483,118 @@ function AdminDashboard() {
                 </div>
               )}
 
-              {filteredEnquiries.map((enquiry) => {
-                const isExpanded = expandedId === enquiry.id;
-                return (
-                  <div
-                    key={enquiry.id}
-                    className={`admin-card status-${enquiry.status} ${isExpanded ? "expanded" : ""}`}
-                  >
-                    <div
-                      className="admin-card-summary"
-                      onClick={() => handleExpand(enquiry)}
-                    >
-                      <div className="admin-card-left">
-                        <span className={`admin-status-dot status-${enquiry.status}`} />
-                        <div>
-                          <h3 className="admin-card-name">
-                            {enquiry.name}
-                            {enquiry.status === "new" && (
-                              <span className="admin-new-indicator">NEW</span>
-                            )}
-                          </h3>
-                          <p className="admin-card-meta">
-                            {enquiry.email} • {enquiry.phone}
-                          </p>
-                        </div>
-                      </div>
+              {filteredEnquiries.length > 0 && (
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Guest Details</th>
+                      <th>Contact</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th>Received</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredEnquiries.map((enquiry) => {
+                      const isExpanded = expandedId === enquiry.id;
+                      return (
+                        <React.Fragment key={enquiry.id}>
+                          <tr 
+                            className={`admin-table-row status-${enquiry.status} ${isExpanded ? "expanded" : ""}`}
+                            onClick={() => handleExpand(enquiry)}
+                          >
+                            <td data-label="Guest Details">
+                              <div className="admin-td-name">
+                                <span className={`admin-status-dot status-${enquiry.status}`} />
+                                <span className="admin-card-name">
+                                  {enquiry.name}
+                                  {enquiry.status === "new" && (
+                                    <span className="admin-new-indicator">NEW</span>
+                                  )}
+                                </span>
+                              </div>
+                            </td>
+                            <td data-label="Contact">
+                              <div className="admin-td-contact">
+                                <span>{enquiry.email}</span>
+                                <span>{enquiry.phone}</span>
+                              </div>
+                            </td>
+                            <td data-label="Type">
+                              <span className={`admin-badge type-${enquiry.type}`}>
+                                {typeLabel(enquiry.type)}
+                              </span>
+                            </td>
+                            <td data-label="Status">
+                              <span className={`admin-badge status-${enquiry.status}`}>
+                                {enquiry.status}
+                              </span>
+                            </td>
+                            <td data-label="Received" className="admin-td-time" title={formatDate(enquiry.createdAt)}>
+                              {relativeTime(enquiry.createdAt)}
+                            </td>
+                            <td className="admin-td-expand">
+                              <span className="admin-expand-icon">
+                                {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
+                              </span>
+                            </td>
+                          </tr>
 
-                      <div className="admin-card-right">
-                        <div className="admin-card-info">
-                          <span className={`admin-badge type-${enquiry.type}`}>
-                            {typeLabel(enquiry.type)}
-                          </span>
-                          <span className={`admin-badge status-${enquiry.status}`}>
-                            {enquiry.status}
-                          </span>
-                        </div>
-                        <span className="admin-card-time" title={formatDate(enquiry.createdAt)}>
-                          {relativeTime(enquiry.createdAt)}
-                        </span>
-                        <span className="admin-expand-icon">
-                          {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
-                        </span>
-                      </div>
-                    </div>
+                          {isExpanded && (
+                            <tr className="admin-table-details-row">
+                              <td colSpan="6" className="admin-table-details-cell">
+                                <div className="admin-card-details">
+                                  <div className="admin-message-box">
+                                    <span className="admin-message-label">Message</span>
+                                    <p className="admin-message-text">{enquiry.message}</p>
+                                  </div>
 
-                    {isExpanded && (
-                      <div className="admin-card-details">
-                        <div className="admin-message-box">
-                          <span className="admin-message-label">Message</span>
-                          <p className="admin-message-text">{enquiry.message}</p>
-                        </div>
+                                  <div className="admin-card-footer">
+                                    <div className="admin-status-control">
+                                      <label>Status:</label>
+                                      <select
+                                        value={enquiry.status}
+                                        onChange={(e) => handleStatusChange(enquiry.id, e.target.value)}
+                                        className={`admin-status-select status-${enquiry.status}`}
+                                      >
+                                        <option value="new">New</option>
+                                        <option value="read">Read</option>
+                                        <option value="resolved">Resolved</option>
+                                      </select>
+                                    </div>
 
-                        <div className="admin-card-footer">
-                          <div className="admin-status-control">
-                            <label>Status:</label>
-                            <select
-                              value={enquiry.status}
-                              onChange={(e) => handleStatusChange(enquiry.id, e.target.value)}
-                              className={`admin-status-select status-${enquiry.status}`}
-                            >
-                              <option value="new">New</option>
-                              <option value="read">Read</option>
-                              <option value="resolved">Resolved</option>
-                            </select>
-                          </div>
-
-                          <div className="admin-card-actions">
-                            <a
-                              href={`mailto:${enquiry.email}`}
-                              className="admin-btn admin-btn-primary"
-                            >
-                              <FiMail /> Reply by Email
-                            </a>
-                            <a
-                              href={`tel:${enquiry.phone}`}
-                              className="admin-btn admin-btn-secondary"
-                            >
-                              <FiPhone /> Call
-                            </a>
-                            <button
-                              className="admin-btn admin-btn-danger"
-                              onClick={() => handleDelete(enquiry.id)}
-                            >
-                              <FiTrash2 /> Delete
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                                    <div className="admin-card-actions">
+                                      <a
+                                        href={`mailto:${enquiry.email}`}
+                                        className="admin-btn admin-btn-primary"
+                                      >
+                                        <FiMail /> Reply by Email
+                                      </a>
+                                      <a
+                                        href={`tel:${enquiry.phone}`}
+                                        className="admin-btn admin-btn-secondary"
+                                      >
+                                        <FiPhone /> Call
+                                      </a>
+                                      <button
+                                        className="admin-btn admin-btn-danger"
+                                        onClick={() => handleDelete(enquiry.id)}
+                                      >
+                                        <FiTrash2 /> Delete
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
         )}

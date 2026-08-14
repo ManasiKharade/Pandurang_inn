@@ -7,7 +7,7 @@
 
 .admin-dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #faf9f6 0%, #fdfbf7 100%);
   color: #111827;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   display: flex;
@@ -227,13 +227,13 @@
 
 .admin-stat-card {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: 16px;
   padding: 24px;
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
@@ -257,21 +257,21 @@
 }
 
 .admin-stat-card:hover {
-  transform: translateY(-4px);
-  border-color: #d1d5db;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  transform: translateY(-6px);
+  border-color: rgba(209, 213, 219, 0.8);
+  box-shadow: 0 14px 24px -5px rgba(0, 0, 0, 0.06), 0 6px 10px -3px rgba(0, 0, 0, 0.03);
 }
 
 .admin-stat-card.active {
-  border-color: #b8860b;
-  background: linear-gradient(135deg, #ffffff 0%, #fefce8 100%);
-  box-shadow: 0 8px 20px rgba(184, 134, 11, 0.12), 0 0 0 1px #b8860b inset;
+  border-color: rgba(184, 134, 11, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #fefcf3 100%);
+  box-shadow: 0 12px 28px rgba(184, 134, 11, 0.08), 0 0 0 1px rgba(184, 134, 11, 0.2) inset;
 }
 
 .admin-stat-icon {
   width: 48px;
   height: 48px;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -343,11 +343,11 @@
   display: flex;
   align-items: center;
   background-color: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 0 16px;
-  height: 48px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px; /* Pill shape */
+  padding: 0 24px;
+  height: 56px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) inset, 0 1px 2px rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
 }
 
@@ -394,17 +394,17 @@
 
 .admin-type-select {
   background-color: #ffffff;
-  border: 1px solid #d1d5db;
+  border: 1px solid #e5e7eb;
   color: #111827;
-  border-radius: 8px;
-  padding: 0 16px;
-  height: 48px;
+  border-radius: 9999px; /* Pill shape */
+  padding: 0 24px;
+  height: 56px;
   outline: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   min-width: 180px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
 }
 
@@ -426,104 +426,105 @@
   font-weight: 600;
 }
 
-/* ===== Enquiry List ===== */
-.admin-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.admin-card {
+/* ===== Enquiry Table ===== */
+.admin-table-container {
+  width: 100%;
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-left: 4px solid #e5e7eb;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  overflow-x: auto;
   opacity: 0;
-  animation: fadeSlideUp 0.5s ease-out forwards;
+  animation: fadeSlideUp 0.6s ease-out forwards;
 }
 
-.admin-card:nth-child(1) {
-  animation-delay: 0.1s;
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
 }
 
-.admin-card:nth-child(2) {
-  animation-delay: 0.15s;
+.admin-table th {
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+  background: #fdfbf7;
 }
 
-.admin-card:nth-child(3) {
-  animation-delay: 0.2s;
+.admin-table-row {
+  border-bottom: 1px solid rgba(229, 231, 235, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.admin-card:nth-child(4) {
-  animation-delay: 0.25s;
+.admin-table-row:hover {
+  background-color: #f9fafb;
 }
 
-.admin-card:nth-child(5) {
-  animation-delay: 0.3s;
+.admin-table-row.expanded {
+  background-color: #fdfbf7;
+  border-bottom: none;
 }
 
-.admin-card:nth-child(6) {
-  animation-delay: 0.35s;
+.admin-table td {
+  padding: 16px 24px;
+  vertical-align: middle;
 }
 
-.admin-card:nth-child(n+7) {
-  animation-delay: 0.4s;
+/* Status left border trick on table row via td */
+.admin-table-row td:first-child {
+  border-left: 4px solid transparent;
 }
+.admin-table-row.status-new td:first-child { border-left-color: #f97316; }
+.admin-table-row.status-read td:first-child { border-left-color: #3b82f6; }
+.admin-table-row.status-resolved td:first-child { border-left-color: #10b981; }
 
-.admin-card.status-new {
-  border-left-color: #f97316;
-}
-
-.admin-card.status-read {
-  border-left-color: #3b82f6;
-}
-
-.admin-card.status-resolved {
-  border-left-color: #10b981;
-}
-
-.admin-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-right-color: #d1d5db;
-  border-top-color: #d1d5db;
-  border-bottom-color: #d1d5db;
-}
-
-.admin-card-summary {
+.admin-td-name {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  cursor: pointer;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.admin-card-left {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  flex: 1;
-  min-width: 0;
-}
-
-.admin-status-dot {
-  display: none;
-  /* Hide the dot, relying on left border and badge */
+  gap: 12px;
 }
 
 .admin-card-name {
   font-size: 15px;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 4px;
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+}
+
+.admin-td-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.admin-td-time {
+  font-size: 13px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.admin-td-expand {
+  text-align: right;
+  color: #9ca3af;
+}
+
+.admin-table-details-row {
+  background-color: #fdfbf7;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+}
+
+.admin-table-details-cell {
+  padding: 0;
 }
 
 .admin-new-indicator {
@@ -534,23 +535,6 @@
   padding: 2px 6px;
   border-radius: 4px;
   border: 1px solid #fed7aa;
-}
-
-.admin-card-meta {
-  font-size: 14px;
-  color: #6b7280;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-.admin-card-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-shrink: 0;
 }
 
 .admin-card-info {
@@ -907,23 +891,11 @@
     gap: 16px;
   }
 
-  .admin-card-summary {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .admin-card-right {
-    width: 100%;
-    justify-content: space-between;
-  }
-
   .admin-card-footer {
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
   }
-
   .admin-status-control {
     width: 100%;
     justify-content: space-between;
@@ -932,20 +904,40 @@
 
 @media (max-width: 480px) {
   .admin-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
   }
 
   .admin-stat-card {
-    padding: 16px 12px;
+    padding: 12px 4px;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 8px;
+    gap: 4px;
+  }
+
+  .admin-stat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .admin-stat-label {
+    font-size: 10px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .admin-stat-info h3 {
-    font-size: 24px;
+    font-size: 18px;
+  }
+  
+  .admin-stat-pulse {
+    font-size: 9px;
+    margin-top: 2px;
   }
 
   .admin-header-actions {
@@ -963,16 +955,6 @@
 
   .admin-type-select {
     width: 100%;
-  }
-
-  .admin-card-right {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .admin-card-info {
-    flex-wrap: wrap;
   }
 
   .admin-status-tabs {
