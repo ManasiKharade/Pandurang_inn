@@ -3,7 +3,7 @@ import "./Dormitory.css";
 function Dormitory() {
   return (
     <section className="dormitory-section">
-      <div className="dormitory-heading">
+      <div className="dormitory-heading" data-aos="fade-up">
         <span>SHARED ACCOMMODATION</span>
         <h2>Our Dormitories</h2>
         <p>
@@ -12,7 +12,7 @@ function Dormitory() {
         </p>
       </div>
 
-      <div className="dormitory-content">
+      <div className="dormitory-content" data-aos="fade-up" data-aos-delay="100">
         <h3>Spacious & Comfortable Dorms</h3>
         <p>Details about the dormitories will be available soon.</p>
       </div>

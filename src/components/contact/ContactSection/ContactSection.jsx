@@ -10,7 +10,7 @@ function ContactSection() {
       <div className="contact-container">
         <div className="contact-card">
 
-          <div className="contact-heading">
+          <div className="contact-heading" data-aos="fade-up">
             <span>CONTACT US</span>
             <h2>We'd Love to Hear From You</h2>
             <p>
@@ -19,11 +19,11 @@ function ContactSection() {
             </p>
           </div>
 
-          <div className="contact-left">
+          <div className="contact-left" data-aos="fade-right" data-aos-delay="100">
             <ContactForm />
           </div>
 
-          <div className="contact-right">
+          <div className="contact-right" data-aos="fade-left" data-aos-delay="200">
             <ContactInfo />
           </div>
 

@@ -13,30 +13,27 @@ function Rooms() {
   return (
 
     <section className="rooms-section">
-
-      <div className="rooms-heading">
-
+      <div className="rooms-heading" data-aos="fade-up">
         <span>ROOMS & SUITES </span>
-
         <h2>Luxury Rooms & Suites</h2>
-
         <p>
           Experience beautifully designed rooms crafted for comfort,
           elegance and unforgettable stays in the heart of Pandharpur
         </p>
-
       </div>
 
-      <RoomTabs
-        rooms={rooms}
-        activeRoom={activeRoom}
-        setActiveRoom={setActiveRoom}
-      />
+      <div data-aos="fade-up" data-aos-delay="100">
+        <RoomTabs
+          rooms={rooms}
+          activeRoom={activeRoom}
+          setActiveRoom={setActiveRoom}
+        />
+      </div>
 
-      <RoomShowcase room={activeRoom} />
-
+      <div data-aos="fade-up" data-aos-delay="200">
+        <RoomShowcase room={activeRoom} />
+      </div>
     </section>
-
   );
 
 }

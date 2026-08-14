@@ -11,7 +11,7 @@ function Hero() {
     <section className="hero">
       {/* Left Content */}
       <div className="hero-left">
-        <div className="hero-content">
+        <div className="hero-content" data-aos="fade-right">
           <span className="hero-badge">✦ Welcome to Pandurang Inn</span>
 
           <img src={hotelLogo} alt="Pandurang Inn Logo" className="hero-logo" />
@@ -34,7 +34,7 @@ function Hero() {
           </p>
 
           {/* Stats row inside left content */}
-          <div className="hero-stats">
+          <div className="hero-stats" data-aos="fade-up" data-aos-delay="200">
             <div className="stat">
               <div className="stat-icon"><FaBed /></div>
               <div className="stat-text">
@@ -71,7 +71,7 @@ function Hero() {
       </div>
 
       {/* Right Image — full portrait displayed */}
-      <div className="hero-right">
+      <div className="hero-right" data-aos="fade-left" data-aos-delay="100">
         <img src={heroImage} alt="Pandurang Inn Hotel Facade" className="hero-image" />
         <div className="hero-image-overlay"></div>
       </div>

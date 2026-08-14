@@ -1,8 +1,8 @@
 import Card from '../../common/Card/Card';
 
-function RoomCard({ room }) {
+function RoomCard({ room, ...props }) {
   return (
-    <Card title={room.name} description={room.description} />
+    <Card title={room.name} description={room.description} {...props} />
   );
 }
 

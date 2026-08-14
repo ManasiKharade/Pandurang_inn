@@ -4,41 +4,14 @@ import services from "../../../data/services";
 import FacilityFeature from "../FacilityFeature/FacilityFeature";
 
 function ServicesSection() {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className={`services-section ${isVisible ? "services-visible" : ""
-        }`}
-    >
+    <section className="services-section">
 
       {/* =========================
           HEADING
       ========================= */}
 
-      <div className="services-heading">
+      <div className="services-heading" data-aos="fade-up">
 
         <span>Hotel Facilities</span>
 
@@ -57,14 +30,13 @@ function ServicesSection() {
       ========================= */}
 
       <div className="services-grid">
-
-        {services.map((facility) => (
+        {services.map((facility, index) => (
           <FacilityFeature
             key={facility.id}
             facility={facility}
+            index={index}
           />
         ))}
-
       </div>
 
     </section>

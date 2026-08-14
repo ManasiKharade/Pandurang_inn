@@ -10,19 +10,13 @@ function AboutSection() {
         <section className="about-section">
 
             <div className="about-container">
-
-                <div className="about-left">
-
+                <div className="about-left" data-aos="fade-right">
                     <AboutContent />
-
                 </div>
 
-                <div className="about-right">
-
+                <div className="about-right" data-aos="fade-left" data-aos-delay="200">
                     <AboutStats />
-
                 </div>
-
             </div>
 
         </section>
