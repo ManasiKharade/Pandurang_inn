@@ -264,14 +264,16 @@ function AdminDashboard() {
       <header className="admin-topbar">
         <div className="admin-topbar-inner">
           <div className="admin-topbar-left">
+            <div className="admin-brand">
+              <img src={logo} alt="Pandurang Inn" className="admin-dashboard-logo" />
+              <span className="admin-hotel-name">PANDURANG INN</span>
+            </div>
             <button 
               className="admin-mobile-menu-btn" 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <FiX /> : <FiMenu />}
             </button>
-            <img src={logo} alt="Pandurang Inn" className="admin-dashboard-logo" />
-            <span className="admin-hotel-name">PANDURANG INN</span>
           </div>
           <div className="admin-topbar-center">
             <h1>{activeTab === "enquiries" ? "Admin Dashboard" : "Admin Settings"}</h1>

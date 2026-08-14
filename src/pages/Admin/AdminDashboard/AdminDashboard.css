@@ -49,6 +49,12 @@
 .admin-topbar-left {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
 }
 
 .admin-topbar-center {
@@ -821,14 +827,25 @@
   .admin-topbar-inner {
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: 16px;
-    padding-bottom: 8px;
+    gap: 12px;
+    padding-bottom: 4px;
   }
 
   .admin-topbar-left {
-    justify-content: flex-start;
-    flex-wrap: wrap;
     width: 100%;
+  }
+
+  .admin-hotel-name {
+    display: none; /* Hide on mobile to save space */
+  }
+  
+  .admin-dashboard-logo {
+    height: 48px; /* Slightly smaller logo on mobile */
+  }
+
+  .admin-topbar-center h1 {
+    font-size: 22px;
+    margin-bottom: 4px;
   }
   
   .admin-header-actions-wrapper {
@@ -839,8 +856,10 @@
   }
   
   .admin-mobile-menu-btn {
-    display: block;
-    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: -8px; /* align with edge */
   }
 
   .admin-header-actions {
