@@ -22,7 +22,7 @@ import f7 from "../assets/images/rooms/family/F7.jpeg";
 import f8 from "../assets/images/rooms/family/F8.jpeg";
 import f9 from "../assets/images/rooms/family/F9.jpeg";
 
-import d1 from "../assets/images/rooms/Dormitory/d1.jpeg";
+import d1 from "../assets/images/rooms/Dormitory/D1.jpeg";
 
 const rooms = [
   {
