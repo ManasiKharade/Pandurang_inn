@@ -22,6 +22,8 @@ import f7 from "../assets/images/rooms/family/F7.jpeg";
 import f8 from "../assets/images/rooms/family/F8.jpeg";
 import f9 from "../assets/images/rooms/family/F9.jpeg";
 
+import d1 from "../assets/images/rooms/Dormitory/d1.jpeg";
+
 const rooms = [
   {
     id: 1,
@@ -75,6 +77,32 @@ const rooms = [
     ],
 
     images: [f1, f2, f3, f4, f5, f6, f7, f8, f9],
+  },
+  {
+    id: 3,
+    name: "Dormitory",
+    category: "Dormitory",
+    price: "Best Rate Guaranteed",
+    size: "Shared Space",
+    occupancy: "10–20 Guests",
+    bed: "Single Beds (Shared)",
+    bestFor: "Pilgrims / Groups / Budget Travelers",
+
+    description:
+      "Our spacious dormitory offers affordable shared accommodation for pilgrims, groups, and budget-conscious travelers. Clean, well-maintained, and equipped with all essential amenities, it's the perfect choice for those seeking comfort without compromise during their visit to Pandharpur.",
+
+    amenities: [
+      "Single Beds",
+      "Shared Bathroom",
+      "Locker Facility",
+      "Fan / Ventilation",
+      "Drinking Water",
+      "Daily Housekeeping",
+      "24/7 Security",
+      "Budget Friendly",
+    ],
+
+    images: [d1],
   },
 ];
 

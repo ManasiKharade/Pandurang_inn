@@ -25,12 +25,6 @@ const navigation = [
     path: "/#rooms",
     sectionId: "rooms",
   },
-  {
-    id: 45,
-    name: "Dormitory",
-    path: "/#dormitory",
-    sectionId: "dormitory",
-  },
   /*
   {
     id: 5,

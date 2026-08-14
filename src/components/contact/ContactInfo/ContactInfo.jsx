@@ -11,10 +11,10 @@ import {
 
 const infoItems = [
   { icon: <FaMapMarkerAlt />, label: "Address", value: contact.address },
-  { icon: <FaPhoneAlt />,     label: "Phone",   value: contact.phone },
-  { icon: <FaEnvelope />,     label: "Email",   value: contact.email },
-  { icon: <FaClock />,        label: "Reception", value: contact.reception },
-  { icon: <FaComments />,     label: "Response Time", value: contact.response },
+  { icon: <FaPhoneAlt />, label: "Phone", value: contact.phone },
+  { icon: <FaEnvelope />, label: "Email", value: contact.email },
+  { icon: <FaClock />, label: "Reception", value: contact.reception },
+  { icon: <FaComments />, label: "Response Time", value: contact.response },
 ];
 
 function ContactInfo() {
@@ -45,7 +45,7 @@ function ContactInfo() {
       <div className="contact-info-divider" />
 
       <p className="contact-info-footer">
-        ✦ &nbsp; Luxury hospitality since 2005 &nbsp; ✦
+        ✦ &nbsp;  Enjoy Our Luxurious hospitality  &nbsp; ✦
       </p>
 
     </div>

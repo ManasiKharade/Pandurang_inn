@@ -1,1 +1,0 @@
-Place dining images here.
