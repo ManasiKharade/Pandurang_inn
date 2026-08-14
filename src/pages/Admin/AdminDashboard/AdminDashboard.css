@@ -824,11 +824,15 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
+  .admin-topbar {
+    padding: 8px 16px;
+  }
+
   .admin-topbar-inner {
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: 12px;
-    padding-bottom: 4px;
+    gap: 4px;
+    padding-bottom: 0;
   }
 
   .admin-topbar-left {
@@ -840,12 +844,16 @@
   }
   
   .admin-dashboard-logo {
-    height: 48px; /* Slightly smaller logo on mobile */
+    height: 40px; /* Even smaller logo on mobile to save height */
   }
 
   .admin-topbar-center h1 {
-    font-size: 22px;
-    margin-bottom: 4px;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  
+  .admin-header-sub {
+    font-size: 11px;
   }
   
   .admin-header-actions-wrapper {
