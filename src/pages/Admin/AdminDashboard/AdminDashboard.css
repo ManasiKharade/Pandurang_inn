@@ -837,14 +837,20 @@
 
   .admin-topbar-left {
     width: 100%;
+    position: relative;
+    justify-content: space-between;
   }
 
   .admin-hotel-name {
-    display: none; /* Hide on mobile to save space */
+    font-size: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
   }
   
   .admin-dashboard-logo {
-    height: 40px; /* Even smaller logo on mobile to save height */
+    height: 40px;
   }
 
   .admin-topbar-center h1 {

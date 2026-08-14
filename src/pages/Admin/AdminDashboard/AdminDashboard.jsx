@@ -266,8 +266,8 @@ function AdminDashboard() {
           <div className="admin-topbar-left">
             <div className="admin-brand">
               <img src={logo} alt="Pandurang Inn" className="admin-dashboard-logo" />
-              <span className="admin-hotel-name">PANDURANG INN</span>
             </div>
+            <span className="admin-hotel-name">PANDURANG INN</span>
             <button 
               className="admin-mobile-menu-btn" 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
