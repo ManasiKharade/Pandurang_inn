@@ -826,21 +826,21 @@
   }
 
   .admin-topbar-left {
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    width: 100%;
   }
   
   .admin-header-actions-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+    position: static;
   }
   
   .admin-mobile-menu-btn {
     display: block;
-    position: absolute;
-    right: 0;
-    top: -45px; /* Adjust to align with center heading */
+    margin-right: 12px;
   }
 
   .admin-header-actions {

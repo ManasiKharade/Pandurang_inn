@@ -264,6 +264,12 @@ function AdminDashboard() {
       <header className="admin-topbar">
         <div className="admin-topbar-inner">
           <div className="admin-topbar-left">
+            <button 
+              className="admin-mobile-menu-btn" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <FiX /> : <FiMenu />}
+            </button>
             <img src={logo} alt="Pandurang Inn" className="admin-dashboard-logo" />
             <span className="admin-hotel-name">PANDURANG INN</span>
           </div>
@@ -274,12 +280,6 @@ function AdminDashboard() {
             </p>
           </div>
           <div className="admin-header-actions-wrapper">
-            <button 
-              className="admin-mobile-menu-btn" 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <FiX /> : <FiMenu />}
-            </button>
             <div className={`admin-header-actions ${isMobileMenuOpen ? 'open' : ''}`}>
               {activeTab === "enquiries" ? (
                 <button
