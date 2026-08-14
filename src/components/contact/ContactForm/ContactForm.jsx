@@ -158,7 +158,7 @@ function ContactForm() {
           value={formData.message}
           onChange={handleChange}
         />
-        {errors.message && <span className="error">{errors.message}</span>}
+
       </div>
 
       <button type="submit" className="send-btn" disabled={isSubmitting}>
