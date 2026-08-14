@@ -101,6 +101,29 @@
   flex-wrap: wrap;
 }
 
+.admin-header-actions-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.admin-mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #111827;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.admin-mobile-menu-btn:hover {
+  background: #f3f4f6;
+}
+
 /* ===== Buttons ===== */
 .admin-btn {
   display: inline-flex;
@@ -807,9 +830,37 @@
     flex-wrap: wrap;
   }
   
-  .admin-header-actions {
-    justify-content: center;
+  .admin-header-actions-wrapper {
     width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .admin-mobile-menu-btn {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -45px; /* Adjust to align with center heading */
+  }
+
+  .admin-header-actions {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 60;
+    margin-top: 8px;
+  }
+
+  .admin-header-actions.open {
+    display: flex;
   }
 }
 

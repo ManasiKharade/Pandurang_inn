@@ -18,6 +18,7 @@ import {
   FiChevronUp,
   FiSettings,
   FiLock,
+  FiMenu,
 } from "react-icons/fi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 
@@ -124,6 +125,7 @@ function AdminDashboard() {
   // Settings State
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
 
   const loadEnquiries = async () => {
@@ -271,36 +273,53 @@ function AdminDashboard() {
               {activeTab === "enquiries" ? "Manage and respond to guest enquiries" : "Manage your admin account preferences"}
             </p>
           </div>
-          <div className="admin-header-actions">
-            {activeTab === "enquiries" ? (
-              <button
-                className="admin-btn admin-btn-secondary"
-                onClick={() => setActiveTab("settings")}
-              >
-                <FiSettings />
-                <span>Settings</span>
-              </button>
-            ) : (
-              <button
-                className="admin-btn admin-btn-secondary"
-                onClick={() => setActiveTab("enquiries")}
-              >
-                <FiInbox />
-                <span>Enquiries</span>
-              </button>
-            )}
-            <button
-              className="admin-btn admin-btn-secondary"
-              onClick={loadEnquiries}
-              disabled={isLoading}
+          <div className="admin-header-actions-wrapper">
+            <button 
+              className="admin-mobile-menu-btn" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <FiRefreshCw className={isLoading ? "spin" : ""} />
-              <span>{isLoading ? "Refreshing..." : "Refresh"}</span>
+              {isMobileMenuOpen ? <FiX /> : <FiMenu />}
             </button>
-            <button className="admin-btn admin-btn-outline" onClick={handleLogout}>
-              <FiLogOut />
-              <span>Logout</span>
-            </button>
+            <div className={`admin-header-actions ${isMobileMenuOpen ? 'open' : ''}`}>
+              {activeTab === "enquiries" ? (
+                <button
+                  className="admin-btn admin-btn-secondary"
+                  onClick={() => {
+                    setActiveTab("settings");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <FiSettings />
+                  <span>Settings</span>
+                </button>
+              ) : (
+                <button
+                  className="admin-btn admin-btn-secondary"
+                  onClick={() => {
+                    setActiveTab("enquiries");
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <FiInbox />
+                  <span>Enquiries</span>
+                </button>
+              )}
+              <button
+                className="admin-btn admin-btn-secondary"
+                onClick={() => {
+                  loadEnquiries();
+                  setIsMobileMenuOpen(false);
+                }}
+                disabled={isLoading}
+              >
+                <FiRefreshCw className={isLoading ? "spin" : ""} />
+                <span>{isLoading ? "Refreshing..." : "Refresh"}</span>
+              </button>
+              <button className="admin-btn admin-btn-outline" onClick={handleLogout}>
+                <FiLogOut />
+                <span>Logout</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>
