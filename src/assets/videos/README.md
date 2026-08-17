@@ -1,1 +1,0 @@
-Place video assets here.
