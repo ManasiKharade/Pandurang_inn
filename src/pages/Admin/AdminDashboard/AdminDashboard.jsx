@@ -454,7 +454,7 @@ function AdminDashboard() {
               >
                 <option value="all">All Types</option>
                 <option value={ENQUIRY_TYPES.GENERAL}>General</option>
-                <option value={ENQUIRY_TYPES.ROOM}>Room Booking</option>
+                <option value={ENQUIRY_TYPES.STAY}>Room Booking</option>
                 <option value={ENQUIRY_TYPES.DORMITORY}>Dormitory</option>
               </select>
             </div>
