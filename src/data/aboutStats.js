@@ -8,7 +8,7 @@ const aboutStats = [
 
     {
         id: 2,
-        number: "500+",
+        number: "100+",
         title: "Happy Guests"
     },
 
