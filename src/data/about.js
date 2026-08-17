@@ -10,7 +10,6 @@ const about = {
   description2:
     "Located close to the famous Shri Vitthal Rukmini Temple, Pandurang Inn provides modern accommodation, fine dining, banquet facilities, and exceptional service, making it one of the preferred destinations for travelers visiting Pandharpur.",
 
-  image: aboutImage,
 };
 
 export default about;
