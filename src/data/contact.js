@@ -4,9 +4,9 @@ const contact = {
   address:
     "bhajandas chowk, 909, opposite BARABHAI TALIM, Govindpura, Pandharpur, Maharashtra 413304",
 
-  phone: "+91 98765 43210",
+  phone: "+91 8855823636, +91 8090406999",
 
-  email: "info@panduranginn.com",
+  email: "panduranginn@gmail.com",
 
   reception: "24 Hours",
 

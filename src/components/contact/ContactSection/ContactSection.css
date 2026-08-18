@@ -92,7 +92,7 @@
 /* inner card wraps both panels */
 .contact-card {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
@@ -103,15 +103,16 @@
 /* ===== Left — Form Panel ===== */
 .contact-left {
   background: #ffffff;
-  padding: 36px 42px;
+  padding: 28px 20px 30px 28px;
 }
 
 /* ===== Right — Info Panel ===== */
 .contact-right {
   background: #ffffff;
-  padding: 36px 38px;
+  padding: 28px 28px 30px 20px;
   position: relative;
   overflow: hidden;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* subtle decorative accents */

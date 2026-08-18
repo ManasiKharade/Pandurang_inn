@@ -45,7 +45,7 @@
   width: 140px;
   height: auto;
   margin-bottom: 18px;
-  filter: drop-shadow(0 2px 12px rgba(212, 175, 55, 0.3));
+  filter: drop-shadow(0 4px 16px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
   animation:
     logoEntrance 1s cubic-bezier(0.22, 1, 0.36, 1) forwards,
     logoFloat 3s ease-in-out 1s infinite,
@@ -81,11 +81,11 @@
 
   0%,
   100% {
-    filter: drop-shadow(0 2px 12px rgba(212, 175, 55, 0.3));
+    filter: drop-shadow(0 4px 16px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
   }
 
   50% {
-    filter: drop-shadow(0 4px 24px rgba(212, 175, 55, 0.7)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.2));
+    filter: drop-shadow(0 6px 30px rgba(212, 175, 55, 1)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.8));
   }
 }
 

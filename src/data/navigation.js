@@ -11,28 +11,14 @@ const navigation = [
     path: "/#about",
     sectionId: "about",
   },
-  /*
-  {
-    id: 3,
-    name: "Dining",
-    path: "/#dining",
-    sectionId: "dining",
-  },
-  */
+
   {
     id: 4,
     name: "Rooms",
     path: "/#rooms",
     sectionId: "rooms",
   },
-  /*
-  {
-    id: 5,
-    name: "Meetings & Events",
-    path: "/#events",
-    sectionId: "events",
-  },
-  */
+
   {
     id: 6,
     name: "Services",

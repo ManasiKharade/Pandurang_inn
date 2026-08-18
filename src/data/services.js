@@ -7,6 +7,7 @@ import {
   FaLayerGroup,
   FaCoffee,
   FaParking,
+  FaWifi,
 } from "react-icons/fa";
 
 const services = [
@@ -44,10 +45,10 @@ const services = [
 
   {
     id: 5,
-    title: "Contemporary Flooring",
-    icon: FaLayerGroup,
+    title: "High Speed WiFi",
+    icon: FaWifi,
     description:
-      "Elegant flooring enhances the warmth and comfort of every room.",
+      "Enjoy fast and reliable WiFi throughout your stay.",
   },
 
   {

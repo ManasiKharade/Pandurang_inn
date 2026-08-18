@@ -2,7 +2,7 @@ const heroData = {
   title: "Experience Refined Hospitality",
 
   subtitle:
-    "Discover luxury rooms, elegant dining experiences, and unforgettable hospitality at Pandurang Inn.",
+    "Discover luxury rooms, comfortable stays, and unforgettable hospitality at Pandurang Inn.",
 
   primaryButton: "Explore Rooms",
 

@@ -42,6 +42,7 @@ import gopal3 from "../assets/images/nearby/Gopalpur/G3.jpg";
 // 10. Mangalwedha
 import mangal1 from "../assets/images/nearby/Mangalwedha/m1.jpg";
 import mangal2 from "../assets/images/nearby/Mangalwedha/m2.jpg";
+import mangal3 from "../assets/images/nearby/Mangalwedha/m3.jpg";
 
 // 14. Barshi Bhagwant Temple
 import barshi1 from "../assets/images/nearby/Barshibhagwant/Barshi1.jpg";
@@ -213,13 +214,13 @@ const nearbyPlaces = [
   },
   {
     id: 10,
-    name: "Mangalwedha",
+    name: "Bhuikot Killa (Mangalwedha Fort)",
     category: "Tourist",
     distance: "22 km",
     walk: "-",
     drive: "30 min",
     image: mangal1,
-    gallery: [mangal1, mangal2],
+    gallery: [mangal1, mangal2, mangal3],
     summary: "Historic town associated with Sant Damaji and Sant Chokhamela.",
     description:
       "Mangalwedha is a historic town 22 km from Pandharpur, celebrated as the land of saints (Santanchi Bhumi). It is deeply connected with revered figures like Sant Damaji, Sant Chokhamela, and Sant Kanhopatra, making it a key spiritual excursion.",

@@ -33,9 +33,9 @@ function AppRoutes() {
 
       {/* All section routes redirect to home with the corresponding hash */}
       <Route path="/about" element={<Navigate to="/#about" replace />} />
-      {/* <Route path="/dining" element={<Navigate to="/#dining" replace />} /> */}
+
       <Route path="/rooms" element={<Navigate to="/#rooms" replace />} />
-      {/* <Route path="/meeting-events" element={<Navigate to="/#events" replace />} /> */}
+
       <Route path="/services" element={<Navigate to="/#services" replace />} />
       <Route path="/nearby-places" element={<Navigate to="/#nearby" replace />} />
       <Route path="/contact" element={<SectionRedirect hash="#contact" />} />
